@@ -1,33 +1,50 @@
 import './index.css'
+import profilePhoto from './assets/profile_photo.jpg';
 
 export default function App() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans">
       {/* HEADER */}
-      <header className="bg-slate-900 border-b border-slate-800 sticky top-0 z-10">
-        <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-          <h1 className="text-xl font-bold text-cyan-400">CodeDiggs</h1>
-          <nav className="space-x-6 text-slate-300">
-            <a href="#about" className="hover:text-cyan-400">About</a>
-            <a href="#projects" className="hover:text-cyan-400">Projects</a>
-            <a href="#contact" className="hover:text-cyan-400">Contact</a>
-          </nav>
+      <header className="flex items-center justify-between px-8 py-4 bg-slate-900 shadow-md">
+      {/* Left side – Site name */}
+      <h1 className="text-2xl font-bold text-cyan-400">CodeDiggs</h1>
+
+      {/* Right side – Nav + Photo */}
+      <div className="flex items-center space-x-6">
+        <nav className="flex space-x-6 text-slate-300">
+          <a href="#about" className="hover:text-cyan-400 transition">About</a>
+          <a href="#projects" className="hover:text-cyan-400 transition">Projects</a>
+          <a href="#contact" className="hover:text-cyan-400 transition">Contact</a>
+        </nav>
+
+        {/* Profile Image */}
+        <div className="relative flex items-center justify-center">
+          <img
+            src={profilePhoto}
+            alt="John Giles portrait"
+            className="w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-cyan-400 shadow-md object-cover 
+                      transition-transform duration-500 ease-out hover:scale-[2.5] hover:z-50 hover:shadow-cyan-400"
+          />
         </div>
-      </header>
+      </div>
+    </header>
+
 
       {/* HERO SECTION */}
-      <section className="flex flex-col items-center justify-center text-center py-24 px-6 bg-gradient-to-b from-slate-900 to-slate-950">
-        <h2 className="text-5xl font-extrabold text-cyan-400 mb-4">Hi, I’m John Giles</h2>
-        <p className="text-lg text-slate-300 max-w-2xl">
-          I blend mechanical intuition with software precision — building systems that connect the physical and digital worlds.
-        </p>
-        <a
-          href="#projects"
-          className="mt-8 inline-block bg-cyan-400 text-slate-950 font-semibold px-6 py-3 rounded-lg hover:bg-cyan-300 transition"
-        >
-          View My Work
-        </a>
-      </section>
+     <section className="flex flex-col items-center justify-center text-center py-24 px-6 bg-gradient-to-b from-slate-900 to-slate-950">
+      <h2 className="text-5xl font-extrabold text-cyan-400 mb-4">Hi, I’m John Giles</h2>
+      <p className="text-lg text-slate-300 leading-relaxed max-w-2xl">
+        I blend mechanical intuition with software precision — building systems that connect
+        the physical and digital worlds.
+      </p>
+      <a
+        href="#projects"
+        className="mt-8 inline-block bg-cyan-400 text-slate-950 font-semibold px-6 py-3 rounded-lg hover:bg-cyan-300 transition"
+      >
+        View My Work
+      </a>
+    </section>
+
 
       {/* ABOUT */}
       <section id="about" className="max-w-4xl mx-auto px-6 py-20">
