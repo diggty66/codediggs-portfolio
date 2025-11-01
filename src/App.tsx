@@ -14,8 +14,10 @@ export default function App() {
         <nav className="flex space-x-6 text-slate-300">
           <a href="#about" className="hover:text-cyan-400 transition">About</a>
           <a href="#projects" className="hover:text-cyan-400 transition">Projects</a>
+          <a href="#resume" className="hover:text-cyan-400 transition">Résumé</a>
           <a href="#contact" className="hover:text-cyan-400 transition">Contact</a>
         </nav>
+
 
         {/* Profile Image */}
         <div className="relative flex items-center justify-center">
@@ -74,6 +76,46 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      <section id="resume" className="max-w-5xl mx-auto px-6 py-20">
+        <h3 className="text-3xl font-semibold text-cyan-400 mb-8 text-center">Résumé & Experience</h3>
+
+        <div className="space-y-8 text-slate-300">
+          <div>
+            <h4 className="text-xl font-semibold text-cyan-300">Software Engineer / Full Stack Developer</h4>
+            <p className="text-slate-400 text-sm">CodeDiggs • 2023 – Present</p>
+            <p className="mt-2 leading-relaxed">
+              Designing and deploying full-stack applications using React, Flask, and Django.  
+              Experience with DevOps pipelines, GitHub Actions, and cloud deployment via Render and Linode.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="text-xl font-semibold text-cyan-300">Automotive Diagnostics Specialist</h4>
+            <p className="text-slate-400 text-sm">Auto Diagnostic Services LLC • 2011 – 2012</p>
+            <p className="mt-2 leading-relaxed">
+              Performed advanced diagnostics, CAN-bus communication analysis, and repair for VW/Audi systems.  
+              ASE-certified technician with emphasis on electrical and engine control troubleshooting.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="text-xl font-semibold text-cyan-300">Education</h4>
+            <p className="text-slate-400 text-sm">B.S. Computer and Informatics Engineering • Magna Cum Laude</p>
+          </div>
+        </div>
+
+        <div className="text-center mt-10">
+          <a
+            href="/resume.pdf"
+            download
+            className="inline-block bg-cyan-400 text-slate-950 font-semibold px-6 py-3 rounded-lg hover:bg-cyan-300 transition"
+          >
+            Download PDF Résumé
+          </a>
+        </div>
+      </section>
+
 
       {/* CONTACT */}
       <section id="contact" className="text-center py-20 bg-slate-900">
