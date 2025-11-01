@@ -106,8 +106,8 @@ export default function App() {
         </div>
 
         <div className="text-center mt-10">
-         <a
-            href={`${import.meta.env.BASE_URL}resume.pdf`}
+          <a
+            href="https://diggty66.github.io/codediggs-portfolio/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-cyan-400 text-slate-950 font-semibold px-6 py-3 rounded-lg hover:bg-cyan-300 transition"
