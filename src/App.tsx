@@ -569,11 +569,11 @@ export default function App() {
                 Certifications
               </h3>
 
-              <div className="mx-auto grid max-w-3xl gap-6">
+              <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
                 {certifications.map((certification) => (
                   <article
                     key={`${certification.issuer}-${certification.credential}`}
-                    className={`relative rounded-xl border border-slate-700 bg-slate-950/60 p-6 shadow-lg shadow-slate-950/30 sm:p-8 ${
+                    className={`relative flex h-full flex-col rounded-xl border border-slate-700 bg-slate-950/60 p-6 shadow-lg shadow-slate-950/30 sm:p-8 ${
                       certification.documentImage
                         ? 'transition hover:-translate-y-1 hover:border-cyan-400'
                         : ''
@@ -617,7 +617,7 @@ export default function App() {
                     </ul>
 
                     {certification.documentImage && (
-                      <p className="mt-6 text-sm font-medium text-cyan-400">
+                      <p className="mt-auto pt-6 text-sm font-medium text-cyan-400">
                         View certificate <span aria-hidden="true">↗</span>
                       </p>
                     )}
