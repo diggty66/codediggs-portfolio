@@ -17,6 +17,17 @@ export type EducationEntry = {
   location: string
   completed: string
   details?: string[]
+  documentImage?: string
+  documentAlt?: string
+}
+
+export type CertificationEntry = {
+  credential: string
+  issuer: string
+  completed: string
+  details: string[]
+  documentImage?: string
+  documentAlt?: string
 }
 
 export type MilitaryServiceEntry = {
@@ -29,7 +40,7 @@ export type MilitaryServiceEntry = {
 
 // This is the website's single source of truth for résumé content.
 // Update these entries whenever the résumé changes; the Experience, Education,
-// Military Service, and Skills sections are rendered directly from this file.
+// Certifications, Military Service, and Skills sections render from this file.
 export const professionalExperience: ExperienceEntry[] = [
   {
     role: 'Automotive Instructor',
@@ -113,6 +124,18 @@ export const education: EducationEntry[] = [
     location: 'Union, NJ',
     completed: 'December 2005',
     details: ['High Honors', 'GPA: 4.0'],
+  },
+]
+
+export const certifications: CertificationEntry[] = [
+  {
+    credential: '120-Hour Premier Online TEFL / TESOL Course',
+    issuer: 'The TEFL Org',
+    completed: 'September 2026',
+    details: [
+      'Internationally recognized TEFL / TESOL certification',
+      'Grammar, teaching methodology, classroom observation, large-class instruction, and remote learning',
+    ],
   },
 ]
 

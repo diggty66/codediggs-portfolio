@@ -2,11 +2,18 @@ import { useEffect, useState } from 'react'
 import './index.css'
 import profilePhoto from './assets/profile_photo.jpg'
 import {
+  certifications,
   education,
   militaryService,
   professionalExperience,
   skillGroups,
 } from './data/resume'
+
+type CredentialDocument = {
+  src: string
+  alt: string
+  title: string
+}
 
 type GitHubProject = {
   name: string
@@ -179,6 +186,7 @@ const displayName = (name: string) =>
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [projects, setProjects] = useState<GitHubProject[]>(fallbackProjects)
+  const [selectedCredential, setSelectedCredential] = useState<CredentialDocument | null>(null)
 
   useEffect(() => {
     const controller = new AbortController()
@@ -206,7 +214,10 @@ export default function App() {
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setMenuOpen(false)
+      if (event.key === 'Escape') {
+        setMenuOpen(false)
+        setSelectedCredential(null)
+      }
     }
 
     window.addEventListener('keydown', closeOnEscape)
@@ -509,8 +520,26 @@ export default function App() {
               {education.map((entry) => (
                 <article
                   key={`${entry.institution}-${entry.credential}`}
-                  className="flex h-full flex-col rounded-xl border border-slate-700 bg-slate-950/60 p-6 shadow-lg shadow-slate-950/30"
+                  className={`relative flex h-full flex-col rounded-xl border border-slate-700 bg-slate-950/60 p-6 shadow-lg shadow-slate-950/30 ${
+                    entry.documentImage
+                      ? 'transition hover:-translate-y-1 hover:border-cyan-400'
+                      : ''
+                  }`}
                 >
+                  {entry.documentImage && (
+                    <button
+                      type="button"
+                      className="absolute inset-0 z-10 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                      aria-label={`View ${entry.credential} document`}
+                      onClick={() =>
+                        setSelectedCredential({
+                          src: entry.documentImage!,
+                          alt: entry.documentAlt || `${entry.credential} from ${entry.institution}`,
+                          title: entry.credential,
+                        })
+                      }
+                    />
+                  )}
                   <p className="text-sm font-medium text-cyan-400">{entry.completed}</p>
                   <h3 className="mt-3 text-xl font-semibold text-cyan-300">{entry.credential}</h3>
                   <p className="mt-3 font-medium text-slate-200">{entry.institution}</p>
@@ -525,8 +554,76 @@ export default function App() {
                       ))}
                     </ul>
                   )}
+
+                  {entry.documentImage && (
+                    <p className="mt-6 text-sm font-medium text-cyan-400">
+                      View degree <span aria-hidden="true">↗</span>
+                    </p>
+                  )}
                 </article>
               ))}
+            </div>
+
+            <div className="mt-16">
+              <h3 className="mb-8 text-center text-2xl font-semibold text-cyan-400">
+                Certifications
+              </h3>
+
+              <div className="mx-auto grid max-w-3xl gap-6">
+                {certifications.map((certification) => (
+                  <article
+                    key={`${certification.issuer}-${certification.credential}`}
+                    className={`relative rounded-xl border border-slate-700 bg-slate-950/60 p-6 shadow-lg shadow-slate-950/30 sm:p-8 ${
+                      certification.documentImage
+                        ? 'transition hover:-translate-y-1 hover:border-cyan-400'
+                        : ''
+                    }`}
+                  >
+                    {certification.documentImage && (
+                      <button
+                        type="button"
+                        className="absolute inset-0 z-10 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                        aria-label={`View ${certification.credential} certificate`}
+                        onClick={() =>
+                          setSelectedCredential({
+                            src: certification.documentImage!,
+                            alt:
+                              certification.documentAlt ||
+                              `${certification.credential} issued by ${certification.issuer}`,
+                            title: certification.credential,
+                          })
+                        }
+                      />
+                    )}
+
+                    <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+                      <div>
+                        <h4 className="text-xl font-semibold text-cyan-300">
+                          {certification.credential}
+                        </h4>
+                        <p className="mt-2 font-medium text-slate-200">{certification.issuer}</p>
+                      </div>
+                      <p className="shrink-0 text-sm font-medium text-cyan-400">
+                        {certification.completed}
+                      </p>
+                    </div>
+
+                    <ul className="mt-5 space-y-2 pl-5 text-slate-300">
+                      {certification.details.map((detail) => (
+                        <li key={detail} className="list-disc leading-relaxed marker:text-cyan-400">
+                          {detail}
+                        </li>
+                      ))}
+                    </ul>
+
+                    {certification.documentImage && (
+                      <p className="mt-6 text-sm font-medium text-cyan-400">
+                        View certificate <span aria-hidden="true">↗</span>
+                      </p>
+                    )}
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -608,6 +705,40 @@ export default function App() {
       <footer className="border-t border-slate-800 py-6 text-center text-slate-600">
         © {new Date().getFullYear()} CodeDiggs – Built with React + Tailwind CSS
       </footer>
+
+      {selectedCredential && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/90 p-4 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="credential-document-title"
+          onClick={() => setSelectedCredential(null)}
+        >
+          <div
+            className="relative w-fit max-w-full rounded-xl border border-slate-700 bg-slate-900 p-3 shadow-2xl sm:p-4"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="mb-3 flex items-center justify-between gap-6 px-1">
+              <h2 id="credential-document-title" className="font-semibold text-cyan-300">
+                {selectedCredential.title}
+              </h2>
+              <button
+                type="button"
+                className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-700 text-xl text-slate-200 transition hover:border-cyan-400 hover:text-cyan-400"
+                aria-label="Close credential document"
+                onClick={() => setSelectedCredential(null)}
+              >
+                ×
+              </button>
+            </div>
+            <img
+              src={selectedCredential.src}
+              alt={selectedCredential.alt}
+              className="block h-auto max-h-[calc(100vh-8rem)] w-auto max-w-[calc(100vw-2rem)] rounded-lg object-contain"
+            />
+          </div>
+        </div>
+      )}
     </div>
   )
 }
