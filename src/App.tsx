@@ -10,9 +10,10 @@ import {
 } from './data/resume'
 
 type CredentialDocument = {
-  src: string
-  alt: string
+  src?: string
+  alt?: string
   title: string
+  details?: string[]
 }
 
 type GitHubProject = {
@@ -574,23 +575,26 @@ export default function App() {
                   <article
                     key={`${certification.issuer}-${certification.credential}`}
                     className={`relative flex h-full flex-col rounded-xl border border-slate-700 bg-slate-950/60 p-6 shadow-lg shadow-slate-950/30 sm:p-8 ${
-                      certification.documentImage
+                      certification.documentImage || certification.documentSummary
                         ? 'transition hover:-translate-y-1 hover:border-cyan-400'
                         : ''
                     }`}
                   >
-                    {certification.documentImage && (
+                    {(certification.documentImage || certification.documentSummary) && (
                       <button
                         type="button"
                         className="absolute inset-0 z-10 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400"
                         aria-label={`View ${certification.credential} certificate`}
                         onClick={() =>
                           setSelectedCredential({
-                            src: certification.documentImage!,
-                            alt:
+                            src: certification.documentImage,
+                            alt: certification.documentImage
+                              ?
                               certification.documentAlt ||
-                              `${certification.credential} issued by ${certification.issuer}`,
+                                `${certification.credential} issued by ${certification.issuer}`
+                              : undefined,
                             title: certification.credential,
+                            details: certification.documentSummary,
                           })
                         }
                       />
@@ -616,9 +620,10 @@ export default function App() {
                       ))}
                     </ul>
 
-                    {certification.documentImage && (
+                    {(certification.documentImage || certification.documentSummary) && (
                       <p className="mt-auto pt-6 text-sm font-medium text-cyan-400">
-                        View certificate <span aria-hidden="true">↗</span>
+                        {certification.documentImage ? 'View certificate' : 'View record'}{' '}
+                        <span aria-hidden="true">↗</span>
                       </p>
                     )}
                   </article>
@@ -731,11 +736,23 @@ export default function App() {
                 ×
               </button>
             </div>
-            <img
-              src={selectedCredential.src}
-              alt={selectedCredential.alt}
-              className="block h-auto max-h-[calc(100vh-8rem)] w-auto max-w-[calc(100vw-2rem)] rounded-lg object-contain"
-            />
+            {selectedCredential.src ? (
+              <img
+                src={selectedCredential.src}
+                alt={selectedCredential.alt}
+                className="block h-auto max-h-[calc(100vh-8rem)] w-auto max-w-[calc(100vw-2rem)] rounded-lg object-contain"
+              />
+            ) : (
+              <div className="max-w-xl rounded-lg bg-slate-950/60 p-5 sm:p-7">
+                <ul className="space-y-3 text-slate-200">
+                  {selectedCredential.details?.map((detail) => (
+                    <li key={detail} className="leading-relaxed">
+                      {detail}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       )}

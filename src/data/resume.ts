@@ -28,6 +28,7 @@ export type CertificationEntry = {
   details: string[]
   documentImage?: string
   documentAlt?: string
+  documentSummary?: string[]
 }
 
 export type MilitaryServiceEntry = {
@@ -120,6 +121,8 @@ export const education: EducationEntry[] = [
     location: 'Lincroft, NJ',
     completed: 'January 2021',
     details: ['GPA: 3.2'],
+    documentImage: '/credentials/brookdale-associate-science-2020.jpeg',
+    documentAlt: 'Brookdale Community College Associate in Science diploma issued in 2020',
   },
   {
     credential: 'Automotive Technician Certificate',
@@ -147,6 +150,12 @@ export const certifications: CertificationEntry[] = [
     details: [
       'Passed the L1 advanced diagnostic examination covering powertrain, computerized controls, ignition, fuel and air induction, emissions, and failure analysis',
     ],
+    documentSummary: [
+      'Issuer: National Institute for Automotive Service Excellence (ASE)',
+      'Test date: April 15, 2026',
+      'Result: Passed',
+      'Original score report retained privately because it contains verification identifiers and a QR code.',
+    ],
   },
   {
     credential: 'A8 Engine Performance Recertification — Examination Passed',
@@ -154,6 +163,12 @@ export const certifications: CertificationEntry[] = [
     completed: 'January 2026',
     details: [
       'Passed the A8R examination covering diagnosis and repair of ignition, fuel, air-induction, exhaust, emissions, and computerized engine-control systems',
+    ],
+    documentSummary: [
+      'Issuer: National Institute for Automotive Service Excellence (ASE)',
+      'Test date: January 28, 2026',
+      'Result: Passed',
+      'Original score report retained privately because it contains verification identifiers and a QR code.',
     ],
   },
   {
