@@ -110,6 +110,9 @@ export const education: EducationEntry[] = [
     location: 'Glassboro, NJ',
     completed: 'January 2023',
     details: ['Magna Cum Laude', 'GPA: 3.89', 'Minor in Computer Science'],
+    documentImage: '/credentials/rowan-ba-computing-informatics-2022.jpg',
+    documentAlt:
+      'Rowan University Bachelor of Arts diploma in Computing and Informatics, Magna Cum Laude',
   },
   {
     credential: 'Associate of Science in Computer Science',
@@ -136,6 +139,63 @@ export const certifications: CertificationEntry[] = [
       'Internationally recognized TEFL / TESOL certification',
       'Grammar, teaching methodology, classroom observation, large-class instruction, and remote learning',
     ],
+  },
+  {
+    credential: 'L1 Advanced Engine Performance Specialist — Examination Passed',
+    issuer: 'National Institute for Automotive Service Excellence (ASE)',
+    completed: 'April 2026',
+    details: [
+      'Passed the L1 advanced diagnostic examination covering powertrain, computerized controls, ignition, fuel and air induction, emissions, and failure analysis',
+    ],
+  },
+  {
+    credential: 'A8 Engine Performance Recertification — Examination Passed',
+    issuer: 'National Institute for Automotive Service Excellence (ASE)',
+    completed: 'January 2026',
+    details: [
+      'Passed the A8R examination covering diagnosis and repair of ignition, fuel, air-induction, exhaust, emissions, and computerized engine-control systems',
+    ],
+  },
+  {
+    credential: 'Technician — Registered',
+    issuer: 'Audi Academy',
+    completed: '2018',
+    details: ['Completed Audi Academy training requirements for registered technician status'],
+    documentImage: '/credentials/audi-technician-registered-2018.jpg',
+    documentAlt: 'Audi Academy Technician Registered certificate issued in 2018',
+  },
+  {
+    credential: 'Inventor for Beginners',
+    issuer: 'SolidProfessor',
+    completed: 'March 2018',
+    details: [
+      'Autodesk Inventor fundamentals: parametric modeling, sketches, assemblies, 3D models, and production-ready 2D drawings',
+    ],
+    documentImage: '/credentials/inventor-for-beginners-2018.jpg',
+    documentAlt: 'SolidProfessor Inventor for Beginners technical certificate issued in 2018',
+  },
+  {
+    credential: 'Personal Fitness Trainer Certification',
+    issuer:
+      'American Aerobic Association International / International Sports Medicine Association',
+    completed: 'October 2017 – October 2019',
+    details: ['Previously certified; credential expired in October 2019'],
+  },
+  {
+    credential: 'Service Technician',
+    issuer: 'Audi Academy',
+    completed: '2015',
+    details: ['Completed Audi Academy training requirements for service technicians'],
+    documentImage: '/credentials/audi-service-technician-2015.jpg',
+    documentAlt: 'Audi Academy Service Technician certificate issued in 2015',
+  },
+  {
+    credential: 'BMW Body Electronics IV',
+    issuer: 'WORLDPAC Training Institute',
+    completed: 'November 2015',
+    details: ['Completed 16 hours of technical training in BMW body electronics'],
+    documentImage: '/credentials/bmw-body-electronics-iv-2015.jpg',
+    documentAlt: 'WORLDPAC Training Institute BMW Body Electronics IV certificate issued in 2015',
   },
 ]
 
