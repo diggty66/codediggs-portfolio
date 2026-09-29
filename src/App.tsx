@@ -11,10 +11,13 @@ import {
   skillGroups,
 } from './data/resume'
 
-type NavItem = {
+type NavChild = {
   label: string
   href: string
-  children?: NavItem[]
+}
+
+type NavItem = NavChild & {
+  children?: NavChild[]
 }
 
 type CredentialDocument = {
@@ -203,10 +206,6 @@ const navItems: NavItem[] = [
       {
         label: 'Automotive & Technical Career History',
         href: '#automotive-career',
-        children: automotiveCareerHistory.map((entry) => ({
-          label: entry.company + ' · ' + entry.dates,
-          href: '#career-' + entry.id,
-        })),
       },
     ],
   },
@@ -241,10 +240,6 @@ const navItems: NavItem[] = [
     children: skillGroups.map((group) => ({
       label: group.category,
       href: '#skill-' + toAnchorId(group.category),
-      children: group.subsections?.map((subsection) => ({
-        label: subsection.title,
-        href: '#skill-' + toAnchorId(group.category) + '-' + toAnchorId(subsection.title),
-      })),
     })),
   },
   { label: 'Contact', href: '#contact' },
@@ -397,31 +392,14 @@ export default function App() {
                   className="mb-2 ml-3 border-l border-slate-700 pl-2"
                 >
                   {item.children.map((child) => (
-                    <div key={child.href}>
-                      <a
-                        href={child.href}
-                        className="block break-words rounded-lg px-3 py-2 text-sm text-slate-300 transition hover:bg-slate-800 hover:text-cyan-400"
-                        onClick={closeMobileMenu}
-                      >
-                        {child.label}
-                      </a>
-                      {child.children?.map((subheading) => (
-                        <a
-                          key={subheading.href}
-                          href={subheading.href}
-                          className="ml-3 block break-words rounded-lg border-l border-slate-800 px-3 py-2 text-xs text-slate-400 transition hover:bg-slate-800 hover:text-cyan-400"
-                          onClick={() => {
-                            if (subheading.href.startsWith('#career-')) {
-                              const target = document.getElementById(subheading.href.slice(1))
-                              if (target instanceof HTMLDetailsElement) target.open = true
-                            }
-                            closeMobileMenu()
-                          }}
-                        >
-                          {subheading.label}
-                        </a>
-                      ))}
-                    </div>
+                    <a
+                      key={child.href}
+                      href={child.href}
+                      className="block break-words rounded-lg px-3 py-2 text-sm text-slate-300 transition hover:bg-slate-800 hover:text-cyan-400"
+                      onClick={closeMobileMenu}
+                    >
+                      {child.label}
+                    </a>
                   ))}
                 </div>
               </div>
