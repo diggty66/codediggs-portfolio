@@ -612,7 +612,10 @@ export default function App() {
                           <p className="mt-1 text-sm text-slate-400">{entry.location}</p>
                         )}
                       </div>
-                      <span className="shrink-0 text-sm text-cyan-400">{entry.dates}</span>
+                      <span className="flex shrink-0 items-center gap-3 text-sm text-cyan-400">
+                        {entry.dates}
+                        <span aria-hidden="true" className="invisible inline-block">⌄</span>
+                      </span>
                     </div>
                   </article>
                 ) : (
