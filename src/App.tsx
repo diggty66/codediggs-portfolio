@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './index.css'
 import profilePhoto from './assets/profile_photo.jpg'
 import {
+  automotiveCareerHistory,
   businessVentures,
   certifications,
   education,
@@ -194,10 +195,20 @@ const navItems: NavItem[] = [
   {
     label: 'Experience',
     href: '#experience',
-    children: professionalExperience.map((entry) => ({
-      label: entry.role,
-      href: '#experience-' + toAnchorId(entry.role),
-    })),
+    children: [
+      ...professionalExperience.map((entry) => ({
+        label: entry.role,
+        href: '#experience-' + toAnchorId(entry.role),
+      })),
+      {
+        label: 'Automotive & Technical Career History',
+        href: '#automotive-career',
+        children: automotiveCareerHistory.map((entry) => ({
+          label: entry.company + ' · ' + entry.dates,
+          href: '#career-' + entry.id,
+        })),
+      },
+    ],
   },
   {
     label: 'Entrepreneurship',
@@ -399,7 +410,13 @@ export default function App() {
                           key={subheading.href}
                           href={subheading.href}
                           className="ml-3 block break-words rounded-lg border-l border-slate-800 px-3 py-2 text-xs text-slate-400 transition hover:bg-slate-800 hover:text-cyan-400"
-                          onClick={closeMobileMenu}
+                          onClick={() => {
+                            if (subheading.href.startsWith('#career-')) {
+                              const target = document.getElementById(subheading.href.slice(1))
+                              if (target instanceof HTMLDetailsElement) target.open = true
+                            }
+                            closeMobileMenu()
+                          }}
                         >
                           {subheading.label}
                         </a>
@@ -638,6 +655,50 @@ export default function App() {
                 </ul>
               </article>
             ))}
+          </div>
+
+          <div id="automotive-career" className="mt-14 scroll-mt-24">
+            <h3 className="mb-3 text-center text-2xl font-semibold text-cyan-400">
+              Automotive &amp; Technical Career History
+            </h3>
+            <p className="mx-auto mb-9 max-w-2xl text-center text-slate-400">
+              Individual technical, service, sales, and shop-operations positions from 2003–2019.
+              Select an employer to view responsibilities.
+            </p>
+
+            <div className="ml-3 space-y-4 border-l-2 border-slate-700 pl-6">
+              {automotiveCareerHistory.map((entry) => (
+                <details
+                  key={entry.id}
+                  id={'career-' + entry.id}
+                  className="group relative scroll-mt-24 rounded-xl border border-slate-700 bg-slate-900 shadow-lg shadow-slate-950/30 open:border-cyan-400/60"
+                >
+                  <summary className="cursor-pointer list-none rounded-xl p-5 transition hover:bg-slate-800/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-400 [&::-webkit-details-marker]:hidden">
+                    <span aria-hidden="true" className="absolute -left-[2rem] top-7 h-3 w-3 rounded-full border-2 border-cyan-400 bg-slate-950" />
+                    <span className="flex flex-wrap items-start justify-between gap-3">
+                      <span>
+                        <span className="block text-lg font-semibold text-cyan-300">{entry.company}</span>
+                        <span className="mt-1 block font-medium text-slate-200">{entry.role}</span>
+                        {entry.location && (
+                          <span className="mt-1 block text-sm text-slate-400">{entry.location}</span>
+                        )}
+                      </span>
+                      <span className="flex shrink-0 items-center gap-3 text-sm text-cyan-400">
+                        {entry.dates}
+                        <span aria-hidden="true" className="inline-block transition-transform group-open:rotate-180">⌄</span>
+                      </span>
+                    </span>
+                  </summary>
+                  <ul className="space-y-2 border-t border-slate-800 px-6 py-5 pl-10 text-slate-300">
+                    {entry.responsibilities.map((responsibility) => (
+                      <li key={responsibility} className="list-disc leading-relaxed marker:text-cyan-400">
+                        {responsibility}
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              ))}
+            </div>
           </div>
 
           <div className="mt-10 text-center">
