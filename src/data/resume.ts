@@ -75,7 +75,7 @@ export const professionalExperience: ExperienceEntry[] = [
     role: 'Automotive Instructor',
     company: 'Universal Technical Institute',
     location: 'Bloomfield, NJ',
-    dates: 'Dec 2025 – Present',
+    dates: 'Dec 8, 2025 – Present',
     highlights: [
       'Deliver classroom and hands-on lab instruction in automotive diagnostics, electrical systems, fuel systems, drivability, and professional shop practices.',
       'Manage classroom/lab activities, student groups, safety, attendance, assessments, and differentiated instruction across multiple workstations.',
@@ -86,13 +86,13 @@ export const professionalExperience: ExperienceEntry[] = [
     role: 'Software Engineer',
     company: 'Innovative Defense Technologies',
     location: 'Mount Laurel, NJ',
-    dates: 'Feb 2023 – Jan 2025',
+    dates: 'Feb 2023 – Jan 23, 2025',
     highlights: [
       'Collaborated with senior engineers on full-stack and CI/CD development supporting secure automation pipelines through Jenkins, Trivy, Coverity, and Jira/Confluence.',
       'Engineered and maintained secure React applications with TypeScript and JavaScript.',
       'Built CI/CD pipelines integrating security scans with Jenkins, Trivy, and Coverity.',
       'Directed Linux server administration and Dockerized environments for mission-critical systems.',
-      'Migrated infrastructure from CentOS 7 to RHEL 10, improving reliability and patch compliance.',
+      'Migrated CentOS 7 infrastructure toward RHEL using Docker Compose and a bastion host; independently researched and resolved issues with limited documentation.',
       'Automated reporting workflows and supported Agile sprint planning with technical leads.',
     ],
   },
@@ -140,6 +140,7 @@ export const automotiveCareerHistory: CareerHistoryEntry[] = [
     id: 'union-line-garage',
     company: 'Union Line Garage',
     role: 'Automotive Technician',
+    location: 'Hopewell, NJ',
     dates: 'Oct 2015 – Dec 2016',
     responsibilities: [
       'Receive work orders; diagnose and repair customer concerns and complete requested services.',
@@ -164,6 +165,7 @@ export const automotiveCareerHistory: CareerHistoryEntry[] = [
     id: 'als-auto-care',
     company: 'Al’s Auto Care',
     role: 'Automotive Technician',
+    location: 'Brick, NJ',
     dates: 'Nov 2013 – Aug 2014',
     responsibilities: [
       'Perform requested tasks and inspect vehicles for additional service recommendations.',
@@ -336,8 +338,9 @@ export const education: EducationEntry[] = [
     credential: 'Bachelor of Arts in Computing and Informatics',
     institution: 'Rowan University',
     location: 'Glassboro, NJ',
-    completed: 'January 2023',
+    completed: 'December 2022',
     details: [
+      'Spring 2023 commencement',
       'Magna Cum Laude',
       'GPA: 3.83',
       'Dean’s List — Fall 2021 and Spring 2022',
@@ -464,7 +467,7 @@ export const militaryService: MilitaryServiceEntry[] = [
     role: 'Avionics Mechanic (68N10)',
     organization: 'Army National Guard',
     location: 'Ewing, NJ',
-    dates: 'June 1996 – 1999',
+    dates: '1995 – 1998',
     highlights: [
       'Trained in and performed electrical wiring diagnosis and repair on helicopter systems.',
     ],
