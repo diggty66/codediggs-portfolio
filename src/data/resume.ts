@@ -416,6 +416,8 @@ export const skillGroups: SkillGroup[] = [
           'Construction, maintenance, and hands-on problem-solving',
           'Residential framing',
           'High- and low-voltage electrical installation and trim-out',
+          'Residential network installation and upgrades',
+          'Wired and wireless network diagnosis, repair, and management',
           'Window and door installation',
           'Landscaping and garden design',
           'Planting, cultivation, and harvesting',
