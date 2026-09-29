@@ -408,12 +408,25 @@ export const certifications: CertificationEntry[] = [
     ],
   },
   {
-    credential: 'Technician — Registered',
+    credential: 'Audi Academy Technician Certifications',
     issuer: 'Audi Academy',
-    completed: '2018',
-    details: ['Completed Audi Academy training requirements for registered technician status'],
-    documentImage: '/credentials/audi-technician-registered-2018.jpg',
-    documentAlt: 'Audi Academy Technician Registered certificate issued in 2018',
+    completed: '2015 & 2018',
+    details: [
+      '2015 — Service Technician: Completed Audi Academy training requirements for service technicians',
+      '2018 — Technician — Registered: Completed Audi Academy training requirements for registered technician status',
+    ],
+    documents: [
+      {
+        label: 'View 2015 Service Technician certificate',
+        image: '/credentials/audi-service-technician-2015.jpg',
+        alt: 'Audi Academy Service Technician certificate issued in 2015',
+      },
+      {
+        label: 'View 2018 Technician — Registered certificate',
+        image: '/credentials/audi-technician-registered-2018.jpg',
+        alt: 'Audi Academy Technician Registered certificate issued in 2018',
+      },
+    ],
   },
   {
     credential: 'Inventor for Beginners',
@@ -431,14 +444,6 @@ export const certifications: CertificationEntry[] = [
       'American Aerobic Association International / International Sports Medicine Association',
     completed: 'October 2017 – October 2019',
     details: ['Previously certified; credential expired in October 2019'],
-  },
-  {
-    credential: 'Service Technician',
-    issuer: 'Audi Academy',
-    completed: '2015',
-    details: ['Completed Audi Academy training requirements for service technicians'],
-    documentImage: '/credentials/audi-service-technician-2015.jpg',
-    documentAlt: 'Audi Academy Service Technician certificate issued in 2015',
   },
   {
     credential: 'BMW Body Electronics IV',
