@@ -571,41 +571,61 @@ export default function App() {
               Automotive Career History
             </h3>
             <p className="mx-auto mb-9 max-w-2xl text-center text-slate-400">
-              Automotive technician, service, parts, and shop-operations positions from 2004–2019.
-              Select an employer to view responsibilities.
+              Automotive technician, service, parts, and shop-operations positions from 2001–2019.
+              Select an employer to view available responsibilities.
             </p>
 
             <div className="ml-3 space-y-4 border-l-2 border-slate-700 pl-6">
               {automotiveCareerHistory.map((entry) => (
-                <details
-                  key={entry.id}
-                  id={'career-' + entry.id}
-                  className="group relative scroll-mt-24 rounded-xl border border-slate-700 bg-slate-900 shadow-lg shadow-slate-950/30 open:border-cyan-400/60"
-                >
-                  <summary className="cursor-pointer list-none rounded-xl p-5 transition hover:bg-slate-800/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-400 [&::-webkit-details-marker]:hidden">
+                entry.responsibilities.length === 0 ? (
+                  <article
+                    key={entry.id}
+                    id={'career-' + entry.id}
+                    className="relative scroll-mt-24 rounded-xl border border-slate-700 bg-slate-900 p-5 shadow-lg shadow-slate-950/30"
+                  >
                     <span aria-hidden="true" className="absolute -left-[2rem] top-7 h-3 w-3 rounded-full border-2 border-cyan-400 bg-slate-950" />
-                    <span className="flex flex-wrap items-start justify-between gap-3">
-                      <span>
-                        <span className="block text-lg font-semibold text-cyan-300">{entry.company}</span>
-                        <span className="mt-1 block font-medium text-slate-200">{entry.role}</span>
+                    <div className="flex flex-wrap items-start justify-between gap-3">
+                      <div>
+                        <h4 className="text-lg font-semibold text-cyan-300">{entry.company}</h4>
+                        <p className="mt-1 font-medium text-slate-200">{entry.role}</p>
                         {entry.location && (
-                          <span className="mt-1 block text-sm text-slate-400">{entry.location}</span>
+                          <p className="mt-1 text-sm text-slate-400">{entry.location}</p>
                         )}
+                      </div>
+                      <span className="shrink-0 text-sm text-cyan-400">{entry.dates}</span>
+                    </div>
+                  </article>
+                ) : (
+                  <details
+                    key={entry.id}
+                    id={'career-' + entry.id}
+                    className="group relative scroll-mt-24 rounded-xl border border-slate-700 bg-slate-900 shadow-lg shadow-slate-950/30 open:border-cyan-400/60"
+                  >
+                    <summary className="cursor-pointer list-none rounded-xl p-5 transition hover:bg-slate-800/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-400 [&::-webkit-details-marker]:hidden">
+                      <span aria-hidden="true" className="absolute -left-[2rem] top-7 h-3 w-3 rounded-full border-2 border-cyan-400 bg-slate-950" />
+                      <span className="flex flex-wrap items-start justify-between gap-3">
+                        <span>
+                          <span className="block text-lg font-semibold text-cyan-300">{entry.company}</span>
+                          <span className="mt-1 block font-medium text-slate-200">{entry.role}</span>
+                          {entry.location && (
+                            <span className="mt-1 block text-sm text-slate-400">{entry.location}</span>
+                          )}
+                        </span>
+                        <span className="flex shrink-0 items-center gap-3 text-sm text-cyan-400">
+                          {entry.dates}
+                          <span aria-hidden="true" className="inline-block transition-transform group-open:rotate-180">⌄</span>
+                        </span>
                       </span>
-                      <span className="flex shrink-0 items-center gap-3 text-sm text-cyan-400">
-                        {entry.dates}
-                        <span aria-hidden="true" className="inline-block transition-transform group-open:rotate-180">⌄</span>
-                      </span>
-                    </span>
-                  </summary>
-                  <ul className="space-y-2 border-t border-slate-800 px-6 py-5 pl-10 text-slate-300">
-                    {entry.responsibilities.map((responsibility) => (
-                      <li key={responsibility} className="list-disc leading-relaxed marker:text-cyan-400">
-                        {responsibility}
-                      </li>
-                    ))}
-                  </ul>
-                </details>
+                    </summary>
+                    <ul className="space-y-2 border-t border-slate-800 px-6 py-5 pl-10 text-slate-300">
+                      {entry.responsibilities.map((responsibility) => (
+                        <li key={responsibility} className="list-disc leading-relaxed marker:text-cyan-400">
+                          {responsibility}
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                )
               ))}
             </div>
           </div>
