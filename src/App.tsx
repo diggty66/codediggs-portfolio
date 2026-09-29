@@ -10,6 +10,12 @@ import {
   skillGroups,
 } from './data/resume'
 
+type NavItem = {
+  label: string
+  href: string
+  children?: NavItem[]
+}
+
 type CredentialDocument = {
   src?: string
   alt?: string
@@ -170,16 +176,66 @@ const fallbackProjects: GitHubProject[] = [
   },
 ]
 
-const navItems = [
+// Keep the hamburger structure in sync with the headings rendered from résumé data.
+const toAnchorId = (value: string) =>
+  value.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+
+const navItems: NavItem[] = [
   { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
+  {
+    label: 'Projects',
+    href: '#projects',
+    children: [
+      { label: 'Featured Project', href: '#featured-projects' },
+      { label: 'GitHub Repositories', href: '#github-repositories' },
+    ],
+  },
   { label: 'Publications', href: '#publications' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Entrepreneurship', href: '#entrepreneurship' },
-  { label: 'Education', href: '#education' },
-  { label: 'Certifications', href: '#certifications' },
+  {
+    label: 'Experience',
+    href: '#experience',
+    children: professionalExperience.map((entry) => ({
+      label: entry.role,
+      href: '#experience-' + toAnchorId(entry.role),
+    })),
+  },
+  {
+    label: 'Entrepreneurship',
+    href: '#entrepreneurship',
+    children: businessVentures.map((entry) => ({
+      label: entry.name,
+      href: '#business-' + toAnchorId(entry.name),
+    })),
+  },
+  {
+    label: 'Education',
+    href: '#education',
+    children: education.map((entry) => ({
+      label: entry.institution,
+      href: '#education-' + toAnchorId(entry.institution),
+    })),
+  },
+  {
+    label: 'Certifications',
+    href: '#certifications',
+    children: certifications.map((entry) => ({
+      label: entry.credential,
+      href: '#certification-' + toAnchorId(entry.credential),
+    })),
+  },
   { label: 'Military', href: '#military' },
-  { label: 'Skills', href: '#skills' },
+  {
+    label: 'Skills',
+    href: '#skills',
+    children: skillGroups.map((group) => ({
+      label: group.category,
+      href: '#skill-' + toAnchorId(group.category),
+      children: group.subsections?.map((subsection) => ({
+        label: subsection.title,
+        href: '#skill-' + toAnchorId(group.category) + '-' + toAnchorId(subsection.title),
+      })),
+    })),
+  },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -190,8 +246,14 @@ const displayName = (name: string) =>
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [expandedMobileSection, setExpandedMobileSection] = useState<string | null>(null)
   const [projects, setProjects] = useState<GitHubProject[]>(fallbackProjects)
   const [selectedCredential, setSelectedCredential] = useState<CredentialDocument | null>(null)
+
+  const closeMobileMenu = () => {
+    setMenuOpen(false)
+    setExpandedMobileSection(null)
+  }
 
   useEffect(() => {
     const controller = new AbortController()
@@ -221,6 +283,7 @@ export default function App() {
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setMenuOpen(false)
+        setExpandedMobileSection(null)
         setSelectedCredential(null)
       }
     }
@@ -258,7 +321,10 @@ export default function App() {
               aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={menuOpen}
               aria-controls="mobile-navigation"
-              onClick={() => setMenuOpen((open) => !open)}
+              onClick={() => {
+                setMenuOpen((open) => !open)
+                setExpandedMobileSection(null)
+              }}
             >
               <span className="sr-only">{menuOpen ? 'Close menu' : 'Open menu'}</span>
               <span aria-hidden="true" className="text-2xl leading-none">
@@ -271,22 +337,88 @@ export default function App() {
         <nav
           id="mobile-navigation"
           aria-label="Mobile navigation"
-          className={`absolute right-4 top-full mt-2 w-56 rounded-xl border border-slate-700 bg-slate-900 p-2 shadow-2xl transition-all duration-200 xl:hidden ${
+          className={`absolute right-4 top-full mt-2 max-h-[calc(100vh-5.5rem)] w-72 max-w-[calc(100vw-2rem)] overflow-y-auto overscroll-contain rounded-xl border border-slate-700 bg-slate-900 p-2 shadow-2xl transition-all duration-200 xl:hidden ${
             menuOpen
               ? 'visible translate-y-0 opacity-100'
               : 'invisible -translate-y-2 opacity-0'
           }`}
         >
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="block rounded-lg px-4 py-3 text-slate-200 transition hover:bg-slate-800 hover:text-cyan-400"
-              onClick={() => setMenuOpen(false)}
-            >
-              {item.label}
-            </a>
-          ))}
+          {navItems.map((item) =>
+            item.children ? (
+              <div key={item.href} className="border-b border-slate-800 last:border-b-0">
+                <div className="flex items-stretch">
+                  {expandedMobileSection === item.href ? (
+                    <a
+                      href={item.href}
+                      className="flex min-w-0 flex-1 items-center rounded-lg px-4 py-3 font-medium text-cyan-300 transition hover:bg-slate-800"
+                      onClick={closeMobileMenu}
+                    >
+                      {item.label}
+                      <span className="ml-2 text-xs" aria-hidden="true">↗</span>
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      className="min-w-0 flex-1 rounded-lg px-4 py-3 text-left text-slate-200 transition hover:bg-slate-800 hover:text-cyan-400"
+                      aria-expanded={false}
+                      aria-controls={'submenu-' + item.href.slice(1)}
+                      onClick={() => setExpandedMobileSection(item.href)}
+                    >
+                      {item.label}
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    className="w-11 shrink-0 rounded-lg text-cyan-400 transition hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-400"
+                    aria-label={(expandedMobileSection === item.href ? 'Collapse ' : 'Expand ') + item.label + ' submenu'}
+                    aria-expanded={expandedMobileSection === item.href}
+                    aria-controls={'submenu-' + item.href.slice(1)}
+                    onClick={() =>
+                      setExpandedMobileSection((current) => current === item.href ? null : item.href)
+                    }
+                  >
+                    <span aria-hidden="true">{expandedMobileSection === item.href ? '⌃' : '⌄'}</span>
+                  </button>
+                </div>
+                <div
+                  id={'submenu-' + item.href.slice(1)}
+                  hidden={expandedMobileSection !== item.href}
+                  className="mb-2 ml-3 border-l border-slate-700 pl-2"
+                >
+                  {item.children.map((child) => (
+                    <div key={child.href}>
+                      <a
+                        href={child.href}
+                        className="block break-words rounded-lg px-3 py-2 text-sm text-slate-300 transition hover:bg-slate-800 hover:text-cyan-400"
+                        onClick={closeMobileMenu}
+                      >
+                        {child.label}
+                      </a>
+                      {child.children?.map((subheading) => (
+                        <a
+                          key={subheading.href}
+                          href={subheading.href}
+                          className="ml-3 block break-words rounded-lg border-l border-slate-800 px-3 py-2 text-xs text-slate-400 transition hover:bg-slate-800 hover:text-cyan-400"
+                          onClick={closeMobileMenu}
+                        >
+                          {subheading.label}
+                        </a>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <a
+                key={item.href}
+                href={item.href}
+                className="block rounded-lg px-4 py-3 text-slate-200 transition hover:bg-slate-800 hover:text-cyan-400"
+                onClick={closeMobileMenu}
+              >
+                {item.label}
+              </a>
+            )
+          )}
         </nav>
       </header>
 
@@ -332,6 +464,7 @@ export default function App() {
             Featured live work, followed by every public project currently available on my GitHub.
           </p>
 
+          <h3 id="featured-projects" className="mb-5 scroll-mt-24 text-xl font-semibold text-slate-200">Featured Project</h3>
           <div className="mb-10 space-y-6">
             {featuredProjects.map((project) => (
               <a
@@ -371,6 +504,7 @@ export default function App() {
             ))}
           </div>
 
+          <h3 id="github-repositories" className="mb-5 scroll-mt-24 text-xl font-semibold text-slate-200">GitHub Repositories</h3>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {projects.map((project) => (
               <a
@@ -483,7 +617,8 @@ export default function App() {
             {professionalExperience.map((experience) => (
               <article
                 key={`${experience.company}-${experience.role}`}
-                className="rounded-xl border border-slate-800 bg-slate-900 p-6 shadow-lg shadow-slate-950/30"
+                id={'experience-' + toAnchorId(experience.role)}
+                className="scroll-mt-24 rounded-xl border border-slate-800 bg-slate-900 p-6 shadow-lg shadow-slate-950/30"
               >
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
                   <div>
@@ -527,7 +662,8 @@ export default function App() {
               {businessVentures.map((business, index) => (
                 <section
                   key={business.name}
-                  className={`p-6 ${index > 0 ? 'border-t border-slate-800' : ''}`}
+                  id={'business-' + toAnchorId(business.name)}
+                  className={`scroll-mt-24 p-6 ${index > 0 ? 'border-t border-slate-800' : ''}`}
                 >
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
                     <div>
@@ -563,7 +699,8 @@ export default function App() {
               {education.map((entry) => (
                 <article
                   key={`${entry.institution}-${entry.credential}`}
-                  className={`relative flex h-full flex-col rounded-xl border border-slate-700 bg-slate-950/60 p-6 shadow-lg shadow-slate-950/30 ${
+                  id={'education-' + toAnchorId(entry.institution)}
+                  className={`relative scroll-mt-24 flex h-full flex-col rounded-xl border border-slate-700 bg-slate-950/60 p-6 shadow-lg shadow-slate-950/30 ${
                     entry.documentImage
                       ? 'transition hover:-translate-y-1 hover:border-cyan-400'
                       : ''
@@ -616,7 +753,8 @@ export default function App() {
                 {certifications.map((certification) => (
                   <article
                     key={`${certification.issuer}-${certification.credential}`}
-                    className={`relative flex h-full flex-col rounded-xl border border-slate-700 bg-slate-950/60 p-6 shadow-lg shadow-slate-950/30 sm:p-8 ${
+                    id={'certification-' + toAnchorId(certification.credential)}
+                    className={`relative scroll-mt-24 flex h-full flex-col rounded-xl border border-slate-700 bg-slate-950/60 p-6 shadow-lg shadow-slate-950/30 sm:p-8 ${
                       certification.documentImage ||
                       certification.documentSummary ||
                       certification.documents?.length
@@ -763,7 +901,8 @@ export default function App() {
               {skillGroups.map((group) => (
                 <article
                   key={group.category}
-                  className={`rounded-xl border border-slate-700 bg-slate-950/60 p-6 ${
+                  id={'skill-' + toAnchorId(group.category)}
+                  className={`scroll-mt-24 rounded-xl border border-slate-700 bg-slate-950/60 p-6 ${
                     ['Additional Expertise', 'Automotive', 'IT Support & Systems'].includes(
                       group.category,
                     )
@@ -790,7 +929,8 @@ export default function App() {
                       {group.subsections.map((subsection) => (
                         <section
                           key={subsection.title}
-                          className="rounded-lg border border-slate-800 bg-slate-900/70 p-5"
+                          id={'skill-' + toAnchorId(group.category) + '-' + toAnchorId(subsection.title)}
+                          className="scroll-mt-24 rounded-lg border border-slate-800 bg-slate-900/70 p-5"
                         >
                           <h4 className="font-semibold text-slate-100">{subsection.title}</h4>
                           {subsection.skills && (
