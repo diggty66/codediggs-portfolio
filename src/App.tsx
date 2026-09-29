@@ -204,7 +204,7 @@ const navItems: NavItem[] = [
         href: '#experience-' + toAnchorId(entry.role),
       })),
       {
-        label: 'Automotive & Technical Career History',
+        label: 'Automotive Career History',
         href: '#automotive-career',
       },
     ],
@@ -637,10 +637,10 @@ export default function App() {
 
           <div id="automotive-career" className="mt-14 scroll-mt-24">
             <h3 className="mb-3 text-center text-2xl font-semibold text-cyan-400">
-              Automotive &amp; Technical Career History
+              Automotive Career History
             </h3>
             <p className="mx-auto mb-9 max-w-2xl text-center text-slate-400">
-              Individual technical, service, sales, and shop-operations positions from 2003–2019.
+              Automotive technician, service, parts, and shop-operations positions from 2004–2019.
               Select an employer to view responsibilities.
             </p>
 
