@@ -752,16 +752,49 @@ export default function App() {
                           }`}
                         >
                           <h4 className="font-semibold text-slate-100">{subsection.title}</h4>
-                          <div className="mt-4 flex flex-wrap gap-2">
-                            {subsection.skills.map((skill) => (
-                              <span
-                                key={skill}
-                                className="rounded-full border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-300"
-                              >
-                                {skill}
-                              </span>
-                            ))}
-                          </div>
+                          {subsection.skills && (
+                            <div className="mt-4 flex flex-wrap gap-2">
+                              {subsection.skills.map((skill) => (
+                                <span
+                                  key={skill}
+                                  className="rounded-full border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-300"
+                                >
+                                  {skill}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+
+                          {subsection.businesses && (
+                            <div className="mt-5 grid gap-4 md:grid-cols-2">
+                              {subsection.businesses.map((business) => (
+                                <article
+                                  key={business.name}
+                                  className="rounded-lg border border-slate-700 bg-slate-950/70 p-5"
+                                >
+                                  <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+                                    <div>
+                                      <h5 className="font-semibold text-cyan-300">{business.name}</h5>
+                                      <p className="mt-1 text-sm text-slate-400">{business.role}</p>
+                                    </div>
+                                    <p className="shrink-0 text-sm font-medium text-cyan-400">
+                                      {business.dates}
+                                    </p>
+                                  </div>
+                                  <ul className="mt-4 space-y-2 pl-5 text-sm text-slate-300">
+                                    {business.skills.map((skill) => (
+                                      <li
+                                        key={skill}
+                                        className="list-disc leading-relaxed marker:text-cyan-400"
+                                      >
+                                        {skill}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </article>
+                              ))}
+                            </div>
+                          )}
                         </section>
                       ))}
                     </div>
