@@ -11,8 +11,14 @@ export type SkillGroup = {
   skills?: string[]
   subsections?: Array<{
     title: string
-    skills: string[]
+    skills?: string[]
     wide?: boolean
+    businesses?: Array<{
+      name: string
+      role: string
+      dates: string
+      skills: string[]
+    }>
   }>
 }
 
@@ -339,22 +345,64 @@ export const skillGroups: SkillGroup[] = [
       {
         title: 'Entrepreneurship & Business Ownership',
         wide: true,
-        skills: [
-          'Five business ventures spanning ownership, co-ownership, and operations',
-          'CodeDiggs LLC — founder (2026–present)',
-          'Auto Diagnostic Services LLC — owner/operator (2011–2012)',
-          'Dezots Club Car Cafe — co-owner/operator (2002)',
-          'John Giles Personal Training — owner/operator (2000)',
-          'The Sudsy Hussie LLP — co-owner/operator (2021)',
-          'E-commerce website design and online sales',
-          'Product branding, packaging, and marketing',
+        businesses: [
+          {
+            name: 'CodeDiggs LLC',
+            role: 'Founder',
+            dates: '2026–present',
+            skills: [
+              'Business formation and administration',
+              'Software product strategy and planning',
+              'Brand, website, and online-presence management',
+            ],
+          },
+          {
+            name: 'Auto Diagnostic Services LLC',
+            role: 'Owner/operator',
+            dates: '2011–2012',
+            skills: [
+              'Mobile automotive-service business operations',
+              'Customer intake, estimates, scheduling, and invoicing',
+              'Client relationships and workflow management',
+            ],
+          },
+          {
+            name: 'Dezots Club Car Cafe',
+            role: 'Co-owner/operator',
+            dates: '2002',
+            skills: [
+              'Daily deli and food-service business operations',
+              'Staffing and workflow management',
+              'Menu planning and design',
+              'Purchasing, vendor coordination, and inventory control',
+            ],
+          },
+          {
+            name: 'John Giles Personal Training',
+            role: 'Owner/operator',
+            dates: '2000',
+            skills: [
+              'Mobile personal-training business operations',
+              'Client acquisition, scheduling, and retention',
+              'Service planning and customer relations',
+            ],
+          },
+          {
+            name: 'The Sudsy Hussie LLP',
+            role: 'Co-owner/operator',
+            dates: '2021',
+            skills: [
+              'E-commerce operations and online sales',
+              'Product branding, packaging, and marketing',
+              'Manufacturing infrastructure and workflow setup',
+              'Inventory, order-fulfillment, and shipping management',
+            ],
+          },
         ],
       },
       {
         title: 'Knowledge & Analytical',
         skills: [
-          'Customer relations and client communication',
-          'Estimating, scheduling, and workflow management',
           'Oceanography and marine science fundamentals',
           'Geometry, trigonometry, and calculus',
           'Physics and mechanical principles',
@@ -378,16 +426,9 @@ export const skillGroups: SkillGroup[] = [
           'Seasonal landscape maintenance',
           'Commercial-vehicle detailing, including dump-truck cleaning and polishing',
           'Tool and equipment operation',
-          'End-to-end deli and food-service operations',
           'Cooking, food preparation, and production',
           'Commercial kitchen cleaning and sanitation',
           'Table service and customer care',
-          'Food-service staff and workflow management',
-          'Menu planning and design',
-          'Product ordering and vendor coordination',
-          'Physical and online inventory management',
-          'Artisan-soap manufacturing infrastructure design and setup',
-          'Packing, shipping, and order fulfillment',
           'Personal training, coaching, and motivation',
           'First aid and CPR fundamentals',
           'Workplace safety and compliance',
