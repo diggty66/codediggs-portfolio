@@ -274,7 +274,11 @@ export const automotiveCareerHistory: CareerHistoryEntry[] = [
     role: 'Lube Technician',
     location: 'Red Bank, NJ',
     dates: '2001',
-    responsibilities: [],
+    responsibilities: [
+      'Performed routine oil and filter changes and vehicle lubrication services.',
+      'Checked fluid levels and tire pressure as part of basic maintenance.',
+      'Assisted with general preventive-maintenance checks and safe shop procedures.',
+    ],
   },
 ]
 
