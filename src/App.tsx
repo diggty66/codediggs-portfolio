@@ -597,33 +597,33 @@ export default function App() {
                   </article>
                 ) : (
                   <details
-                  key={entry.id}
-                  id={'career-' + entry.id}
-                  className="group relative scroll-mt-24 rounded-xl border border-slate-700 bg-slate-900 shadow-lg shadow-slate-950/30 open:border-cyan-400/60"
-                >
-                  <summary className="cursor-pointer list-none rounded-xl p-5 transition hover:bg-slate-800/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-400 [&::-webkit-details-marker]:hidden">
-                    <span aria-hidden="true" className="absolute -left-[2rem] top-7 h-3 w-3 rounded-full border-2 border-cyan-400 bg-slate-950" />
-                    <span className="flex flex-wrap items-start justify-between gap-3">
-                      <span>
-                        <span className="block text-lg font-semibold text-cyan-300">{entry.company}</span>
-                        <span className="mt-1 block font-medium text-slate-200">{entry.role}</span>
-                        {entry.location && (
-                          <span className="mt-1 block text-sm text-slate-400">{entry.location}</span>
-                        )}
+                    key={entry.id}
+                    id={'career-' + entry.id}
+                    className="group relative scroll-mt-24 rounded-xl border border-slate-700 bg-slate-900 shadow-lg shadow-slate-950/30 open:border-cyan-400/60"
+                  >
+                    <summary className="cursor-pointer list-none rounded-xl p-5 transition hover:bg-slate-800/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-400 [&::-webkit-details-marker]:hidden">
+                      <span aria-hidden="true" className="absolute -left-[2rem] top-7 h-3 w-3 rounded-full border-2 border-cyan-400 bg-slate-950" />
+                      <span className="flex flex-wrap items-start justify-between gap-3">
+                        <span>
+                          <span className="block text-lg font-semibold text-cyan-300">{entry.company}</span>
+                          <span className="mt-1 block font-medium text-slate-200">{entry.role}</span>
+                          {entry.location && (
+                            <span className="mt-1 block text-sm text-slate-400">{entry.location}</span>
+                          )}
+                        </span>
+                        <span className="flex shrink-0 items-center gap-3 text-sm text-cyan-400">
+                          {entry.dates}
+                          <span aria-hidden="true" className="inline-block transition-transform group-open:rotate-180">⌄</span>
+                        </span>
                       </span>
-                      <span className="flex shrink-0 items-center gap-3 text-sm text-cyan-400">
-                        {entry.dates}
-                        <span aria-hidden="true" className="inline-block transition-transform group-open:rotate-180">⌄</span>
-                      </span>
-                    </span>
-                  </summary>
-                  <ul className="space-y-2 border-t border-slate-800 px-6 py-5 pl-10 text-slate-300">
-                    {entry.responsibilities.map((responsibility) => (
-                      <li key={responsibility} className="list-disc leading-relaxed marker:text-cyan-400">
-                        {responsibility}
-                      </li>
-                    ))}
-                  </ul>
+                    </summary>
+                    <ul className="space-y-2 border-t border-slate-800 px-6 py-5 pl-10 text-slate-300">
+                      {entry.responsibilities.map((responsibility) => (
+                        <li key={responsibility} className="list-disc leading-relaxed marker:text-cyan-400">
+                          {responsibility}
+                        </li>
+                      ))}
+                    </ul>
                   </details>
                 )
               ))}
