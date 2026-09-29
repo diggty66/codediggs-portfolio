@@ -6,6 +6,15 @@ export type ExperienceEntry = {
   highlights: string[]
 }
 
+export type CareerHistoryEntry = {
+  id: string
+  company: string
+  role: string
+  location?: string
+  dates: string
+  responsibilities: string[]
+}
+
 export type SkillGroup = {
   category: string
   skills?: string[]
@@ -110,15 +119,160 @@ export const professionalExperience: ExperienceEntry[] = [
       'Collaborated with SCCM and EUS teams to improve asset tracking and deployment.',
     ],
   },
+]
+
+// Sourced from the supplied Work History document; listed newest to oldest.
+// The separately recorded 2006–2009 family-caregiving interval is not employment.
+export const automotiveCareerHistory: CareerHistoryEntry[] = [
   {
-    role: 'Automotive Technician & Diagnostic Specialist',
-    company: 'Dealership and Independent Automotive Service',
-    location: 'New Jersey & South Carolina',
-    dates: '2004 – 2019',
-    highlights: [
-      'Diagnosed and repaired electrical, drivability, engine-performance, fuel, brake, steering and suspension, and HVAC systems.',
-      'Specialized in European vehicles beginning in 2013, with particular experience in Audi and Volkswagen vehicles and in electrical and hybrid systems.',
-      'Owned and operated Auto Diagnostic Services LLC in South Carolina from January 2011 through December 2012, managing diagnostics, repairs, customer relationships, estimates, and scheduling.',
+    id: 'princeton-audi-2017',
+    company: 'Princeton Audi',
+    role: 'Automotive Technician',
+    dates: 'Jan 2017 – Feb 2019',
+    responsibilities: [
+      'Receive work orders; diagnose and repair customer concerns and complete requested services.',
+      'Perform courtesy vehicle inspections and record recommendations in CDK Service Edge.',
+      'Communicate with service advisors and, when necessary, directly with customers.',
+      'Document warranty repairs with proper punch times and descriptions of work performed.',
+    ],
+  },
+  {
+    id: 'union-line-garage',
+    company: 'Union Line Garage',
+    role: 'Automotive Technician',
+    dates: 'Oct 2015 – Dec 2016',
+    responsibilities: [
+      'Receive work orders; diagnose and repair customer concerns and complete requested services.',
+      'Perform courtesy vehicle inspections and record recommendations in CDK Service Edge.',
+      'Communicate with service advisors and, when necessary, directly with customers.',
+      'Document warranty repairs with proper punch times and descriptions of work performed.',
+    ],
+  },
+  {
+    id: 'princeton-audi-2014',
+    company: 'Princeton Audi',
+    role: 'Automotive Technician',
+    dates: 'Aug 2014 – Oct 2015',
+    responsibilities: [
+      'Receive work orders; diagnose and repair customer concerns and complete requested services.',
+      'Perform courtesy vehicle inspections and record recommendations in CDK Service Edge.',
+      'Communicate with service advisors and, when necessary, directly with customers.',
+      'Document warranty repairs with proper punch times and descriptions of work performed.',
+    ],
+  },
+  {
+    id: 'als-auto-care',
+    company: 'Al’s Auto Care',
+    role: 'Automotive Technician',
+    dates: 'Nov 2013 – Aug 2014',
+    responsibilities: [
+      'Perform requested tasks and inspect vehicles for additional service recommendations.',
+      'Diagnose and repair European, Asian, and domestic vehicles and communicate findings to the service advisor.',
+      'Carry out day-to-day shop operations.',
+    ],
+  },
+  {
+    id: 'dch-academy-honda',
+    company: 'DCH Academy Honda',
+    role: 'Service Advisor',
+    dates: 'Jul 2013 – Sep 2013',
+    responsibilities: [
+      'Discuss service needs and concerns with customers; answer calls and schedule appointments.',
+      'Explain estimates, obtain repair approval, and monitor work against promised completion times.',
+      'Communicate expected delays; review repairs and multi-point inspections with customers.',
+      'Handle repair documentation, follow-up calls, and service survey reviews.',
+    ],
+  },
+  {
+    id: 'firestone-complete-auto',
+    company: 'Firestone Complete Auto',
+    role: 'Sales Associate',
+    dates: 'Feb 2013 – May 2013',
+    responsibilities: [
+      'Present tire products and automotive services and provide in-store and telephone customer service.',
+      'Coordinate with the customer service manager and technicians on service timing.',
+      'Explain warranty coverage and customer options.',
+    ],
+  },
+  {
+    id: 'auto-diagnostic-services',
+    company: 'Auto Diagnostic Services LLC',
+    role: 'Shop Manager / Technician',
+    location: 'Little River, SC',
+    dates: 'Mar 2011 – Dec 2012',
+    responsibilities: [
+      'Prepare work orders, estimates, invoices, and receipts.',
+      'Receive customers, interpret vehicle concerns, and process payments.',
+      'Carry out automotive repairs with a focus on diagnostics and testing.',
+    ],
+  },
+  {
+    id: 'advance-auto-parts',
+    company: 'Advance Auto Parts',
+    role: 'Night Closing Manager',
+    location: 'North Myrtle Beach, SC',
+    dates: 'Jul 2010 – Mar 2011',
+    responsibilities: [
+      'Close and count registers, count the safe, and prepare the next day’s deposit.',
+      'Coordinate mail pickup and assign employee closing duties.',
+      'Install batteries and wiper blades and handle stocking and inventory.',
+    ],
+  },
+  {
+    id: 'blacks-tire-service',
+    company: 'Black’s Tire Service',
+    role: 'A-Level Technician',
+    location: 'Shallotte, NC',
+    dates: 'Sep 2009 – Jun 2010',
+    responsibilities: [
+      'Diagnose and repair electrical, OBD I/OBD II, air-conditioning, and brake systems.',
+      'Diagnose noise and drivability concerns; perform repairs and service.',
+      'Remove and replace major components and complete major and minor preventive maintenance.',
+    ],
+  },
+  {
+    id: 'ads-automotive',
+    company: 'ADS Automotive',
+    role: 'B-Level Technician',
+    location: 'Whippany, NJ',
+    dates: 'Mar 2006 – Jun 2006',
+    responsibilities: [
+      'Diagnose and repair electrical, OBD I/OBD II, air-conditioning, and brake systems.',
+      'Diagnose noise and drivability issues and replace major components.',
+      'Perform major and minor preventive maintenance.',
+    ],
+  },
+  {
+    id: 'warnock-nissan',
+    company: 'Warnock Nissan',
+    role: 'C-Level Technician',
+    location: 'Morristown, NJ',
+    dates: 'Jun 2005 – Mar 2006',
+    responsibilities: [
+      'Diagnose and repair electrical, minor OBD II, steering and suspension, and brake systems; perform alignments.',
+      'Address noise and drivability concerns and carry out preventive maintenance.',
+      'Complete technical bulletins and campaigns, plus mechanical disassembly, repair, and rebuild work.',
+    ],
+  },
+  {
+    id: 'rs-strauss',
+    company: 'R&S Strauss',
+    role: 'Entry-Level Technician',
+    location: 'Dover, NJ',
+    dates: 'Dec 2004 – Jun 2005',
+    responsibilities: [
+      'Service brakes, alignments, steering and suspension systems, and minor OBD issues.',
+      'Perform preventive maintenance and tire mounting and balancing.',
+    ],
+  },
+  {
+    id: 'masco-cary-technologies',
+    company: 'Masco/Cary Technologies',
+    role: 'Low-Voltage Electrician',
+    location: 'Jackson, NJ',
+    dates: 'Jun 2003 – Dec 2004',
+    responsibilities: [
+      'Install, trim, troubleshoot, and repair audio, video, security, and central-vacuum systems in new and existing homes.',
     ],
   },
 ]
