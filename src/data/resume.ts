@@ -37,6 +37,9 @@ export type MilitaryServiceEntry = {
   location: string
   dates: string
   highlights: string[]
+  documentImage?: string
+  documentAlt?: string
+  documentDownload?: string
 }
 
 // This is the website's single source of truth for résumé content.
@@ -223,6 +226,9 @@ export const militaryService: MilitaryServiceEntry[] = [
     highlights: [
       'Trained in and performed electrical wiring diagnosis and repair on helicopter systems.',
     ],
+    documentImage: '/credentials/proof-of-service-redacted.png',
+    documentAlt: 'Redacted Department of Veterans Affairs proof of honorable Army service',
+    documentDownload: '/credentials/proof-of-service-redacted.pdf',
   },
 ]
 
