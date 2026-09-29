@@ -576,7 +576,9 @@ export default function App() {
                   <article
                     key={`${certification.issuer}-${certification.credential}`}
                     className={`relative flex h-full flex-col rounded-xl border border-slate-700 bg-slate-950/60 p-6 shadow-lg shadow-slate-950/30 sm:p-8 ${
-                      certification.documentImage || certification.documentSummary
+                      certification.documentImage ||
+                      certification.documentSummary ||
+                      certification.documents?.length
                         ? 'transition hover:-translate-y-1 hover:border-cyan-400'
                         : ''
                     }`}
@@ -590,8 +592,7 @@ export default function App() {
                           setSelectedCredential({
                             src: certification.documentImage,
                             alt: certification.documentImage
-                              ?
-                              certification.documentAlt ||
+                              ? certification.documentAlt ||
                                 `${certification.credential} issued by ${certification.issuer}`
                               : undefined,
                             title: certification.credential,
@@ -621,7 +622,29 @@ export default function App() {
                       ))}
                     </ul>
 
-                    {(certification.documentImage || certification.documentSummary) && (
+                    {certification.documents && (
+                      <div className="relative z-20 mt-auto flex flex-col gap-3 pt-6 sm:flex-row">
+                        {certification.documents.map((document) => (
+                          <button
+                            key={document.image}
+                            type="button"
+                            className="rounded-lg border border-cyan-400 px-4 py-2 text-sm font-semibold text-cyan-300 transition hover:bg-cyan-400 hover:text-slate-950"
+                            onClick={() =>
+                              setSelectedCredential({
+                                src: document.image,
+                                alt: document.alt,
+                                title: document.label.replace(/^View /, ''),
+                              })
+                            }
+                          >
+                            {document.label}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+
+                    {(certification.documentImage || certification.documentSummary) &&
+                      !certification.documents && (
                       <p className="mt-auto pt-6 text-sm font-medium text-cyan-400">
                         {certification.documentImage ? 'View certificate' : 'View record'}{' '}
                         <span aria-hidden="true">↗</span>
