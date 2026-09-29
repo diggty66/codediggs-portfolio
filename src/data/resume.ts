@@ -485,53 +485,58 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    category: 'Computer Science Foundations',
-    skills: [
-      'Object-oriented programming',
-      'Data structures and algorithms',
-      'Database systems',
-      'SQL',
-      'Computer networks and data communications',
-      'Information security',
-      'Human-computer interaction',
-      'Web development',
-      'Computer organization',
-      'Computer architecture and assembly language',
-      'Computer logic and design',
-      'Operating systems',
-      'Systems analysis and design',
-      'Software project development',
-      'Programming language concepts',
-      'Scientific programming',
+    category: 'Programming & Software Development',
+    subsections: [
+      {
+        title: 'Computer Science Foundations',
+        skills: [
+          'Object-oriented programming',
+          'Data structures and algorithms',
+          'Database systems',
+          'SQL',
+          'Computer networks and data communications',
+          'Information security',
+          'Human-computer interaction',
+          'Web development',
+          'Computer organization',
+          'Computer architecture and assembly language',
+          'Computer logic and design',
+          'Operating systems',
+          'Systems analysis and design',
+          'Software project development',
+          'Programming language concepts',
+          'Scientific programming',
+        ],
+      },
+      {
+        title: 'Languages',
+        skills: ['JavaScript', 'TypeScript', 'Python', 'Java', 'C/C++', 'HTML/CSS', 'LaTeX'],
+      },
+      {
+        title: 'Frameworks',
+        skills: ['React', 'Flask', 'Django', 'Node.js', 'Bootstrap', 'WordPress'],
+      },
+      {
+        title: 'DevOps',
+        skills: ['Jenkins', 'Docker', 'Kubernetes', 'Trivy', 'Coverity', 'nginx', 'gunicorn'],
+      },
+      {
+        title: 'Databases',
+        skills: ['SQL', 'PostgreSQL', 'MySQL', 'SQLite'],
+      },
+      {
+        title: 'Tools',
+        skills: ['Git', 'GitHub Actions', 'Jira', 'Confluence', 'Blackboard'],
+      },
+      {
+        title: 'Platforms',
+        skills: ['RHEL', 'Ubuntu', 'CentOS', 'Windows'],
+      },
+      {
+        title: 'AI Tools',
+        skills: ['ChatGPT', 'Google Gemini', 'GitHub Copilot'],
+      },
     ],
-  },
-  {
-    category: 'Languages',
-    skills: ['JavaScript', 'TypeScript', 'Python', 'Java', 'C/C++', 'HTML/CSS', 'LaTeX'],
-  },
-  {
-    category: 'Frameworks',
-    skills: ['React', 'Flask', 'Django', 'Node.js', 'Bootstrap', 'WordPress'],
-  },
-  {
-    category: 'DevOps',
-    skills: ['Jenkins', 'Docker', 'Kubernetes', 'Trivy', 'Coverity', 'nginx', 'gunicorn'],
-  },
-  {
-    category: 'Databases',
-    skills: ['SQL', 'PostgreSQL', 'MySQL', 'SQLite'],
-  },
-  {
-    category: 'Tools',
-    skills: ['Git', 'GitHub Actions', 'Jira', 'Confluence', 'Blackboard'],
-  },
-  {
-    category: 'Platforms',
-    skills: ['RHEL', 'Ubuntu', 'CentOS', 'Windows'],
-  },
-  {
-    category: 'AI Tools',
-    skills: ['ChatGPT', 'Google Gemini', 'GitHub Copilot'],
   },
   {
     category: 'IT Support & Systems',
