@@ -32,7 +32,7 @@ type GitHubProject = {
   name: string
   description: string
   html_url: string
-  language: string
+  technologies: string[]
 }
 
 type FeaturedProject = {
@@ -93,35 +93,35 @@ const selectedProjects: GitHubProject[] = [
     description:
       'Python research prototype for storing and prioritizing persistent context in a hierarchical neural-network layer, with CLI tools and tests.',
     html_url: `${githubProfile}/context-tree-nn-layer`,
-    language: 'Python',
+    technologies: ['Python', 'Neural networks'],
   },
   {
     name: 'jobboard',
     description:
       'A job-board application with separate frontend and backend code, exploring a full-stack approach to job discovery.',
     html_url: `${githubProfile}/jobboard`,
-    language: 'HTML',
+    technologies: ['React', 'TypeScript', 'Flask'],
   },
   {
     name: 'Food-API-Website',
     description:
       'A Django web application integrating multiple food-related APIs.',
     html_url: `${githubProfile}/Food-API-Website`,
-    language: 'JavaScript',
+    technologies: ['Django', 'API integrations'],
   },
   {
     name: 'GetMowed2',
     description:
       'A Flask web application with articles, user profiles, dashboards, and database-backed features.',
     html_url: `${githubProfile}/GetMowed2`,
-    language: 'Python',
+    technologies: ['Flask', 'SQLAlchemy'],
   },
   {
     name: 'AiPersonalityGenerator',
     description:
       'An exploratory C++ project examining personality layers and behavior models for AI characters.',
     html_url: `${githubProfile}/AiPersonalityGenerator`,
-    language: 'C++',
+    technologies: ['C++', 'Experimental AI'],
   },
 ]
 
@@ -442,9 +442,14 @@ export default function App() {
                   {project.description}
                 </p>
                 <div className="mt-5 flex flex-wrap gap-2 text-xs">
-                  <span className="rounded-full bg-slate-800 px-3 py-1 text-slate-300">
-                    {project.language}
-                  </span>
+                  {project.technologies.map((technology) => (
+                    <span
+                      key={technology}
+                      className="rounded-full bg-slate-800 px-3 py-1 text-slate-300"
+                    >
+                      {technology}
+                    </span>
+                  ))}
                 </div>
               </a>
             ))}
