@@ -119,15 +119,6 @@ export const professionalExperience: ExperienceEntry[] = [
       'Collaborated with SCCM and EUS teams to improve asset tracking and deployment.',
     ],
   },
-  {
-    role: 'Low-Voltage Electrician',
-    company: 'Masco/Cary Technologies',
-    location: 'Jackson, NJ',
-    dates: 'Jun 2003 – Dec 2004',
-    highlights: [
-      'Installed, trimmed, troubleshot, and repaired residential audio, video, security, and central-vacuum systems in new and existing homes.',
-    ],
-  },
 ]
 
 // Individual positions from the user's supplied Work History document, newest to oldest.
@@ -272,6 +263,14 @@ export const automotiveCareerHistory: CareerHistoryEntry[] = [
       'Service brakes, alignments, steering and suspension systems, and minor OBD issues.',
       'Perform preventive maintenance and tire mounting and balancing.',
     ],
+  },
+  {
+    id: 'labriola-nissan',
+    company: 'Labriola Nissan',
+    role: 'Lube Technician',
+    location: 'Red Bank, NJ',
+    dates: '2001',
+    responsibilities: [],
   },
 ]
 
