@@ -93,7 +93,7 @@ export const professionalExperience: ExperienceEntry[] = [
       'Engineered and maintained secure React applications with TypeScript and JavaScript.',
       'Built CI/CD pipelines integrating security scans with Jenkins, Trivy, and Coverity.',
       'Directed Linux server administration and Dockerized environments for mission-critical systems.',
-      'Migrated CentOS 7 infrastructure toward RHEL using Docker Compose and a bastion host; independently researched and resolved issues with limited documentation.',
+      'Migrated CentOS 7 infrastructure to RHEL 10 using Docker Compose and a bastion host; independently researched and resolved migration issues with limited documentation.',
       'Automated reporting workflows and supported Agile sprint planning with technical leads.',
     ],
   },
