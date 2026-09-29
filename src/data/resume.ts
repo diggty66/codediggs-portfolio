@@ -78,6 +78,7 @@ export const professionalExperience: ExperienceEntry[] = [
     dates: 'Dec 8, 2025 – Present',
     highlights: [
       'Deliver classroom and hands-on lab instruction in automotive diagnostics, electrical systems, fuel systems, drivability, and professional shop practices.',
+      'Coach evidence-led troubleshooting using service information, wiring diagrams, waveforms, compression testing, and fuel-system examples.',
       'Manage classroom/lab activities, student groups, safety, attendance, assessments, and differentiated instruction across multiple workstations.',
       'Use Blackboard to organize coursework, assignments, grades, feedback, and student progress while coaching diagnostic strategy, documentation, and professional communication.',
     ],
@@ -366,7 +367,7 @@ export const education: EducationEntry[] = [
     institution: 'Lincoln Technical Institute',
     location: 'Union, NJ',
     completed: 'December 2005',
-    details: ['High Honors', 'GPA: 4.0'],
+    details: ['High Honors', 'GPA: 4.0', 'Lincoln Tech Race Team'],
   },
 ]
 
