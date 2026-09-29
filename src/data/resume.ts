@@ -102,9 +102,10 @@ export const professionalExperience: ExperienceEntry[] = [
     location: 'Mount Laurel, NJ',
     dates: 'May 2022 – Aug 2022',
     highlights: [
-      'Integrated Java, C++, and TypeScript components into automated testing systems.',
-      'Solved versioning and library conflicts across compilation environments.',
-      'Collaborated with senior engineers and mentors in a team-oriented Agile workflow.',
+      'Integrated Java, C++, and TypeScript components into automated software testing systems.',
+      'Resolved versioning, library, and reference-link conflicts during cross-language integration.',
+      'Provided common functionality across different compilation environments.',
+      'Worked closely with a mentor and technical experts in a team-oriented engineering environment.',
     ],
   },
   {
@@ -113,10 +114,10 @@ export const professionalExperience: ExperienceEntry[] = [
     location: 'Branchburg, NJ',
     dates: 'Jun 2021 – Aug 2021',
     highlights: [
-      'Coordinated packaging for 96 software applications in 10 weeks.',
-      'Imaged and deployed 170+ workstations across manufacturing and HQ sites.',
-      'Analyzed encryption compliance and supported IT audit remediation efforts.',
-      'Collaborated with SCCM and EUS teams to improve asset tracking and deployment.',
+      'Coordinated application packaging for 96 applications in 10 weeks and worked with users on packaging documentation.',
+      'Worked with the SCCM team on technical processes and coordinated key parts of an IT audit.',
+      'Remediated regional asset inventory and analyzed North American PC encryption status with endpoint-user-services teams.',
+      'Assisted with two major site integrations; imaged approximately 170 machines in 10 weeks and deployed devices to manufacturing and sales HQ sites.',
     ],
   },
 ]
@@ -290,7 +291,8 @@ export const businessVentures: BusinessVenture[] = [
     role: 'Co-owner/operator',
     dates: '2021',
     responsibilities: [
-      'E-commerce operations and online sales',
+      'Designed, implemented, troubleshot, and maintained a WordPress and WooCommerce storefront backed by MySQL',
+      'Managed product listings, payment processing, and site analytics',
       'Product branding, packaging, and marketing',
       'Manufacturing infrastructure and workflow setup',
       'Inventory, order-fulfillment, and shipping management',
