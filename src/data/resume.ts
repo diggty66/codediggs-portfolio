@@ -121,7 +121,7 @@ export const professionalExperience: ExperienceEntry[] = [
   },
 ]
 
-// Individual positions from the user's supplied Work History document, newest to oldest.
+// Positions from the uploaded work history, plus the 2001 Labriola Nissan role supplied in chat.
 export const automotiveCareerHistory: CareerHistoryEntry[] = [
   {
     id: 'princeton-audi-2017',
