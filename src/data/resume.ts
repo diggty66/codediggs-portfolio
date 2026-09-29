@@ -338,6 +338,11 @@ export const skillGroups: SkillGroup[] = [
       {
         title: 'Knowledge & Analytical',
         skills: [
+          'Four-time small-business ownership and operations',
+          'CodeDiggs LLC — founder (2026–present)',
+          'Auto Diagnostic Services LLC — owner/operator (2011–2012)',
+          'Dezots Club Car Cafe — owner/operator (2002)',
+          'John Giles Personal Training — owner/operator (2000)',
           'Customer relations and client communication',
           'Estimating, scheduling, and workflow management',
           'Oceanography and marine science fundamentals',
@@ -353,7 +358,6 @@ export const skillGroups: SkillGroup[] = [
       {
         title: 'Practical & Hands-On',
         skills: [
-          'Small-business ownership and operations',
           'Construction, maintenance, and hands-on problem-solving',
           'Residential framing',
           'High- and low-voltage electrical installation and trim-out',
@@ -364,7 +368,7 @@ export const skillGroups: SkillGroup[] = [
           'Seasonal landscape maintenance',
           'Commercial-vehicle detailing, including dump-truck cleaning and polishing',
           'Tool and equipment operation',
-          'Deli ownership and end-to-end food-service operations',
+          'End-to-end deli and food-service operations',
           'Cooking, food preparation, and production',
           'Commercial kitchen cleaning and sanitation',
           'Table service and customer care',
@@ -372,7 +376,6 @@ export const skillGroups: SkillGroup[] = [
           'Menu planning and design',
           'Product ordering and vendor coordination',
           'Inventory management and stock control',
-          'Mobile personal-training business ownership and operations (2000)',
           'Personal training, coaching, and motivation',
           'First aid and CPR fundamentals',
           'Workplace safety and compliance',
