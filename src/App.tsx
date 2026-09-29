@@ -30,10 +30,9 @@ type CredentialDocument = {
 
 type GitHubProject = {
   name: string
-  description: string | null
+  description: string
   html_url: string
-  language: string | null
-  fork: boolean
+  technologies: string[]
 }
 
 type FeaturedProject = {
@@ -86,97 +85,43 @@ const publications: Publication[] = [
   },
 ]
 
-const fallbackProjects: GitHubProject[] = [
+// Editorial selection, not an automatic dump of the public GitHub account.
+// Each linked repository is public; the complete archive is linked below the gallery.
+const selectedProjects: GitHubProject[] = [
   {
-    name: 'codediggs-portfolio',
-    description: 'The React and TypeScript portfolio behind CodeDiggs.',
-    html_url: `${githubProfile}/codediggs-portfolio`,
-    language: 'TypeScript',
-    fork: false,
+    name: 'context-tree-nn-layer',
+    description:
+      'Python research prototype for storing and prioritizing persistent context in a hierarchical neural-network layer, with CLI tools and tests.',
+    html_url: `${githubProfile}/context-tree-nn-layer`,
+    technologies: ['Python', 'Neural networks'],
   },
   {
     name: 'jobboard',
-    description: 'A public job board web project.',
+    description:
+      'A job-board application with separate frontend and backend code, exploring a full-stack approach to job discovery.',
     html_url: `${githubProfile}/jobboard`,
-    language: 'HTML',
-    fork: false,
+    technologies: ['React', 'TypeScript', 'Flask'],
   },
   {
     name: 'Food-API-Website',
-    description: 'A Django website that brings together multiple food-related APIs.',
+    description:
+      'A Django web application integrating multiple food-related APIs.',
     html_url: `${githubProfile}/Food-API-Website`,
-    language: 'JavaScript',
-    fork: false,
+    technologies: ['Django', 'API integrations'],
   },
   {
     name: 'GetMowed2',
-    description: 'A Flask application with posts, profiles, a dashboard, and database support.',
+    description:
+      'A Flask web application with articles, user profiles, dashboards, and database-backed features.',
     html_url: `${githubProfile}/GetMowed2`,
-    language: 'Python',
-    fork: false,
-  },
-  {
-    name: 'getmowed3',
-    description: 'The third iteration of the Get Mowed application.',
-    html_url: `${githubProfile}/getmowed3`,
-    language: 'JavaScript',
-    fork: false,
-  },
-  {
-    name: 'context-tree-nn-layer',
-    description: 'A context-tree neural-network layer for managing and corroborating context across nodes.',
-    html_url: `${githubProfile}/context-tree-nn-layer`,
-    language: 'Python',
-    fork: false,
+    technologies: ['Flask', 'SQLAlchemy'],
   },
   {
     name: 'AiPersonalityGenerator',
-    description: 'A public C++ project exploring AI personality generation.',
+    description:
+      'An exploratory C++ project examining personality layers and behavior models for AI characters.',
     html_url: `${githubProfile}/AiPersonalityGenerator`,
-    language: 'C++',
-    fork: false,
-  },
-  {
-    name: 'donationsPage',
-    description: 'A donation-page interface project.',
-    html_url: `${githubProfile}/donationsPage`,
-    language: 'SCSS',
-    fork: false,
-  },
-  {
-    name: 'Project3',
-    description: 'A Java group project implementing the List abstract data type.',
-    html_url: `${githubProfile}/Project3`,
-    language: 'Java',
-    fork: false,
-  },
-  {
-    name: 'tensorenv',
-    description: 'A Python tutorial and experimentation repository.',
-    html_url: `${githubProfile}/tensorenv`,
-    language: 'Python',
-    fork: false,
-  },
-  {
-    name: 'Pizza-App',
-    description: 'A public Java application project.',
-    html_url: `${githubProfile}/Pizza-App`,
-    language: 'Java',
-    fork: false,
-  },
-  {
-    name: 'PythonApplication1',
-    description: 'A Python and Flask tutorial application.',
-    html_url: `${githubProfile}/PythonApplication1`,
-    language: 'JavaScript',
-    fork: false,
-  },
-  {
-    name: 'JPMC-tech-task-2',
-    description: 'A public fork completed for a JPMorgan Chase technical task.',
-    html_url: `${githubProfile}/JPMC-tech-task-2`,
-    language: null,
-    fork: true,
+    technologies: ['C++', 'Experimental AI'],
   },
 ]
 
@@ -191,7 +136,7 @@ const navItems: NavItem[] = [
     href: '#projects',
     children: [
       { label: 'Featured Project', href: '#featured-projects' },
-      { label: 'GitHub Repositories', href: '#github-repositories' },
+      { label: 'Selected Repositories', href: '#github-repositories' },
     ],
   },
   { label: 'Publications', href: '#publications' },
@@ -253,37 +198,12 @@ const displayName = (name: string) =>
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [expandedMobileSection, setExpandedMobileSection] = useState<string | null>(null)
-  const [projects, setProjects] = useState<GitHubProject[]>(fallbackProjects)
   const [selectedCredential, setSelectedCredential] = useState<CredentialDocument | null>(null)
 
   const closeMobileMenu = () => {
     setMenuOpen(false)
     setExpandedMobileSection(null)
   }
-
-  useEffect(() => {
-    const controller = new AbortController()
-
-    fetch('https://api.github.com/users/CodeDiggs/repos?per_page=100&sort=updated', {
-      signal: controller.signal,
-    })
-      .then((response) => {
-        if (!response.ok) throw new Error('GitHub request failed')
-        return response.json() as Promise<GitHubProject[]>
-      })
-      .then((repositories) => {
-        const publicProjects = repositories.filter(
-          (repository) => repository.name.toLowerCase() !== 'codediggs',
-        )
-
-        if (publicProjects.length > 0) setProjects(publicProjects)
-      })
-      .catch(() => {
-        // The complete current list remains visible if GitHub is unavailable.
-      })
-
-    return () => controller.abort()
-  }, [])
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
@@ -453,19 +373,11 @@ export default function App() {
         </section>
 
         <section id="projects" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-20">
-          <div className="mb-4 text-center">
-            <a
-              href={repositoriesUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-3xl font-semibold text-cyan-400 transition hover:text-cyan-300"
-              aria-label="View all projects on GitHub"
-            >
-              Projects <span aria-hidden="true">↗</span>
-            </a>
-          </div>
+          <h2 className="mb-4 text-center text-3xl font-semibold text-cyan-400">
+            Projects
+          </h2>
           <p className="mx-auto mb-10 max-w-2xl text-center text-slate-400">
-            Featured live work, followed by every public project currently available on my GitHub.
+            Featured live work and a selection of software projects and experiments.
           </p>
 
           <h3 id="featured-projects" className="mb-5 scroll-mt-24 text-xl font-semibold text-slate-200">Featured Project</h3>
@@ -508,9 +420,9 @@ export default function App() {
             ))}
           </div>
 
-          <h3 id="github-repositories" className="mb-5 scroll-mt-24 text-xl font-semibold text-slate-200">GitHub Repositories</h3>
+          <h3 id="github-repositories" className="mb-5 scroll-mt-24 text-xl font-semibold text-slate-200">Selected Repositories</h3>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
+            {selectedProjects.map((project) => (
               <a
                 key={project.html_url}
                 href={project.html_url}
@@ -527,20 +439,30 @@ export default function App() {
                   </span>
                 </div>
                 <p className="mt-3 flex-1 leading-relaxed text-slate-400">
-                  {project.description || `Public repository for ${displayName(project.name)}.`}
+                  {project.description}
                 </p>
                 <div className="mt-5 flex flex-wrap gap-2 text-xs">
-                  {project.language && (
-                    <span className="rounded-full bg-slate-800 px-3 py-1 text-slate-300">
-                      {project.language}
+                  {project.technologies.map((technology) => (
+                    <span
+                      key={technology}
+                      className="rounded-full bg-slate-800 px-3 py-1 text-slate-300"
+                    >
+                      {technology}
                     </span>
-                  )}
-                  {project.fork && (
-                    <span className="rounded-full bg-slate-800 px-3 py-1 text-slate-400">Fork</span>
-                  )}
+                  ))}
                 </div>
               </a>
             ))}
+          </div>
+          <div className="mt-10 text-center">
+            <a
+              href={repositoriesUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg border border-cyan-400 px-5 py-3 font-semibold text-cyan-300 transition hover:bg-cyan-400 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            >
+              Browse all public GitHub repositories <span aria-hidden="true">↗</span>
+            </a>
           </div>
         </section>
 
