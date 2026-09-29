@@ -14,6 +14,7 @@ type CredentialDocument = {
   alt?: string
   title: string
   details?: string[]
+  downloadHref?: string
 }
 
 type GitHubProject = {
@@ -642,8 +643,27 @@ export default function App() {
             {militaryService.map((service) => (
               <article
                 key={`${service.organization}-${service.role}`}
-                className="rounded-xl border border-slate-800 bg-slate-900 p-6 shadow-lg shadow-slate-950/30"
+                className={`relative rounded-xl border border-slate-800 bg-slate-900 p-6 shadow-lg shadow-slate-950/30 ${
+                  service.documentImage
+                    ? 'transition hover:-translate-y-1 hover:border-cyan-400'
+                    : ''
+                }`}
               >
+                {service.documentImage && (
+                  <button
+                    type="button"
+                    className="absolute inset-0 z-10 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                    aria-label="View redacted proof of honorable service"
+                    onClick={() =>
+                      setSelectedCredential({
+                        src: service.documentImage,
+                        alt: service.documentAlt,
+                        title: 'Proof of Honorable Service',
+                        downloadHref: service.documentDownload,
+                      })
+                    }
+                  />
+                )}
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
                   <div>
                     <h3 className="text-xl font-semibold text-cyan-300">{service.role}</h3>
@@ -660,6 +680,12 @@ export default function App() {
                     </li>
                   ))}
                 </ul>
+
+                {service.documentImage && (
+                  <p className="mt-6 text-sm font-medium text-cyan-400">
+                    View proof of service <span aria-hidden="true">↗</span>
+                  </p>
+                )}
               </article>
             ))}
           </div>
@@ -720,7 +746,7 @@ export default function App() {
           onClick={() => setSelectedCredential(null)}
         >
           <div
-            className="relative w-fit max-w-full rounded-xl border border-slate-700 bg-slate-900 p-3 shadow-2xl sm:p-4"
+            className="relative max-h-[calc(100vh-2rem)] w-fit max-w-full overflow-y-auto rounded-xl border border-slate-700 bg-slate-900 p-3 shadow-2xl sm:p-4"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="mb-3 flex items-center justify-between gap-6 px-1">
@@ -737,11 +763,22 @@ export default function App() {
               </button>
             </div>
             {selectedCredential.src ? (
-              <img
-                src={selectedCredential.src}
-                alt={selectedCredential.alt}
-                className="block h-auto max-h-[calc(100vh-8rem)] w-auto max-w-[calc(100vw-2rem)] rounded-lg object-contain"
-              />
+              <>
+                <img
+                  src={selectedCredential.src}
+                  alt={selectedCredential.alt}
+                  className="block h-auto max-h-[calc(100vh-8rem)] w-auto max-w-[calc(100vw-2rem)] rounded-lg object-contain"
+                />
+                {selectedCredential.downloadHref && (
+                  <a
+                    href={selectedCredential.downloadHref}
+                    download
+                    className="relative z-20 mt-3 block rounded-lg border border-cyan-400 px-4 py-2 text-center text-sm font-semibold text-cyan-300 transition hover:bg-cyan-400 hover:text-slate-950"
+                  >
+                    Download redacted PDF
+                  </a>
+                )}
+              </>
             ) : (
               <div className="max-w-xl rounded-lg bg-slate-950/60 p-5 sm:p-7">
                 <ul className="space-y-3 text-slate-200">
