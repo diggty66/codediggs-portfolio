@@ -764,7 +764,9 @@ export default function App() {
                 <article
                   key={group.category}
                   className={`rounded-xl border border-slate-700 bg-slate-950/60 p-6 ${
-                    ['Additional Expertise', 'Automotive'].includes(group.category)
+                    ['Additional Expertise', 'Automotive', 'IT Support & Systems'].includes(
+                      group.category,
+                    )
                       ? 'sm:col-span-2 lg:col-span-3'
                       : ''
                   }`}
