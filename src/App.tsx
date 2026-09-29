@@ -177,6 +177,7 @@ const navItems = [
   { label: 'Experience', href: '#experience' },
   { label: 'Entrepreneurship', href: '#entrepreneurship' },
   { label: 'Education', href: '#education' },
+  { label: 'Certifications', href: '#certifications' },
   { label: 'Military', href: '#military' },
   { label: 'Skills', href: '#skills' },
   { label: 'Contact', href: '#contact' },
@@ -606,7 +607,7 @@ export default function App() {
               ))}
             </div>
 
-            <div className="mt-16">
+            <div id="certifications" className="mt-16 scroll-mt-24">
               <h3 className="mb-8 text-center text-2xl font-semibold text-cyan-400">
                 Certifications
               </h3>

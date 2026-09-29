@@ -135,6 +135,17 @@ export const businessVentures: BusinessVenture[] = [
     ],
   },
   {
+    name: 'The Sudsy Hussie LLP',
+    role: 'Co-owner/operator',
+    dates: '2021',
+    responsibilities: [
+      'E-commerce operations and online sales',
+      'Product branding, packaging, and marketing',
+      'Manufacturing infrastructure and workflow setup',
+      'Inventory, order-fulfillment, and shipping management',
+    ],
+  },
+  {
     name: 'Auto Diagnostic Services LLC',
     role: 'Owner/operator',
     dates: '2011–2012',
@@ -163,17 +174,6 @@ export const businessVentures: BusinessVenture[] = [
       'Mobile personal-training business operations',
       'Client acquisition, scheduling, and retention',
       'Service planning and customer relations',
-    ],
-  },
-  {
-    name: 'The Sudsy Hussie LLP',
-    role: 'Co-owner/operator',
-    dates: '2021',
-    responsibilities: [
-      'E-commerce operations and online sales',
-      'Product branding, packaging, and marketing',
-      'Manufacturing infrastructure and workflow setup',
-      'Inventory, order-fulfillment, and shipping management',
     ],
   },
 ]
