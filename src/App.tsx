@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './index.css'
 import profilePhoto from './assets/profile_photo.jpg'
 import {
+  businessVentures,
   certifications,
   education,
   militaryService,
@@ -174,6 +175,7 @@ const navItems = [
   { label: 'Projects', href: '#projects' },
   { label: 'Publications', href: '#publications' },
   { label: 'Experience', href: '#experience' },
+  { label: 'Entrepreneurship', href: '#entrepreneurship' },
   { label: 'Education', href: '#education' },
   { label: 'Military', href: '#military' },
   { label: 'Skills', href: '#skills' },
@@ -235,7 +237,7 @@ export default function App() {
           </a>
 
           <div className="flex items-center gap-3 sm:gap-4">
-            <nav className="hidden items-center gap-5 text-slate-300 lg:flex" aria-label="Primary navigation">
+            <nav className="hidden items-center gap-5 text-slate-300 xl:flex" aria-label="Primary navigation">
               {navItems.map((item) => (
                 <a key={item.href} href={item.href} className="transition hover:text-cyan-400">
                   {item.label}
@@ -251,7 +253,7 @@ export default function App() {
 
             <button
               type="button"
-              className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-700 text-slate-200 transition hover:border-cyan-400 hover:text-cyan-400 lg:hidden"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-700 text-slate-200 transition hover:border-cyan-400 hover:text-cyan-400 xl:hidden"
               aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={menuOpen}
               aria-controls="mobile-navigation"
@@ -268,7 +270,7 @@ export default function App() {
         <nav
           id="mobile-navigation"
           aria-label="Mobile navigation"
-          className={`absolute right-4 top-full mt-2 w-56 rounded-xl border border-slate-700 bg-slate-900 p-2 shadow-2xl transition-all duration-200 lg:hidden ${
+          className={`absolute right-4 top-full mt-2 w-56 rounded-xl border border-slate-700 bg-slate-900 p-2 shadow-2xl transition-all duration-200 xl:hidden ${
             menuOpen
               ? 'visible translate-y-0 opacity-100'
               : 'invisible -translate-y-2 opacity-0'
@@ -514,6 +516,44 @@ export default function App() {
           </div>
         </section>
 
+        <section id="entrepreneurship" className="scroll-mt-24 bg-slate-900 px-6 py-20">
+          <div className="mx-auto max-w-5xl">
+            <h2 className="mb-10 text-center text-3xl font-semibold text-cyan-400">
+              Entrepreneurship
+            </h2>
+
+            <article className="overflow-hidden rounded-xl border border-slate-700 bg-slate-950/60 shadow-lg shadow-slate-950/30">
+              {businessVentures.map((business, index) => (
+                <section
+                  key={business.name}
+                  className={`p-6 ${index > 0 ? 'border-t border-slate-800' : ''}`}
+                >
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+                    <div>
+                      <h3 className="text-xl font-semibold text-cyan-300">{business.name}</h3>
+                      <p className="mt-1 text-sm font-medium text-slate-400">{business.role}</p>
+                    </div>
+                    <p className="shrink-0 text-sm font-medium text-cyan-400">
+                      {business.dates}
+                    </p>
+                  </div>
+
+                  <ul className="mt-4 space-y-2 pl-5 text-slate-300">
+                    {business.responsibilities.map((responsibility) => (
+                      <li
+                        key={responsibility}
+                        className="list-disc leading-relaxed marker:text-cyan-400"
+                      >
+                        {responsibility}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
+            </article>
+          </div>
+        </section>
+
         <section id="education" className="scroll-mt-24 bg-slate-900 px-6 py-20">
           <div className="mx-auto max-w-5xl">
             <h2 className="mb-10 text-center text-3xl font-semibold text-cyan-400">Education</h2>
@@ -747,9 +787,7 @@ export default function App() {
                       {group.subsections.map((subsection) => (
                         <section
                           key={subsection.title}
-                          className={`rounded-lg border border-slate-800 bg-slate-900/70 p-5 ${
-                            subsection.wide ? 'lg:col-span-2' : ''
-                          }`}
+                          className="rounded-lg border border-slate-800 bg-slate-900/70 p-5"
                         >
                           <h4 className="font-semibold text-slate-100">{subsection.title}</h4>
                           {subsection.skills && (
@@ -765,36 +803,6 @@ export default function App() {
                             </div>
                           )}
 
-                          {subsection.businesses && (
-                            <div className="mt-5 grid gap-4 md:grid-cols-2">
-                              {subsection.businesses.map((business) => (
-                                <article
-                                  key={business.name}
-                                  className="rounded-lg border border-slate-700 bg-slate-950/70 p-5"
-                                >
-                                  <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
-                                    <div>
-                                      <h5 className="font-semibold text-cyan-300">{business.name}</h5>
-                                      <p className="mt-1 text-sm text-slate-400">{business.role}</p>
-                                    </div>
-                                    <p className="shrink-0 text-sm font-medium text-cyan-400">
-                                      {business.dates}
-                                    </p>
-                                  </div>
-                                  <ul className="mt-4 space-y-2 pl-5 text-sm text-slate-300">
-                                    {business.skills.map((skill) => (
-                                      <li
-                                        key={skill}
-                                        className="list-disc leading-relaxed marker:text-cyan-400"
-                                      >
-                                        {skill}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </article>
-                              ))}
-                            </div>
-                          )}
                         </section>
                       ))}
                     </div>

@@ -12,14 +12,14 @@ export type SkillGroup = {
   subsections?: Array<{
     title: string
     skills?: string[]
-    wide?: boolean
-    businesses?: Array<{
-      name: string
-      role: string
-      dates: string
-      skills: string[]
-    }>
   }>
+}
+
+export type BusinessVenture = {
+  name: string
+  role: string
+  dates: string
+  responsibilities: string[]
 }
 
 export type EducationEntry = {
@@ -119,6 +119,61 @@ export const professionalExperience: ExperienceEntry[] = [
       'Diagnosed and repaired electrical, drivability, engine-performance, fuel, brake, steering and suspension, and HVAC systems.',
       'Specialized in European vehicles beginning in 2013, with particular experience in Audi and Volkswagen vehicles and in electrical and hybrid systems.',
       'Owned and operated Auto Diagnostic Services LLC in South Carolina from January 2011 through December 2012, managing diagnostics, repairs, customer relationships, estimates, and scheduling.',
+    ],
+  },
+]
+
+export const businessVentures: BusinessVenture[] = [
+  {
+    name: 'CodeDiggs LLC',
+    role: 'Founder',
+    dates: '2026–present',
+    responsibilities: [
+      'Business formation and administration',
+      'Software product strategy and planning',
+      'Brand, website, and online-presence management',
+    ],
+  },
+  {
+    name: 'Auto Diagnostic Services LLC',
+    role: 'Owner/operator',
+    dates: '2011–2012',
+    responsibilities: [
+      'Mobile automotive-service business operations',
+      'Customer intake, estimates, scheduling, and invoicing',
+      'Client relationships and workflow management',
+    ],
+  },
+  {
+    name: 'Dezots Club Car Cafe',
+    role: 'Co-owner/operator',
+    dates: '2002',
+    responsibilities: [
+      'Daily deli and food-service business operations',
+      'Staffing and workflow management',
+      'Menu planning and design',
+      'Purchasing, vendor coordination, and inventory control',
+    ],
+  },
+  {
+    name: 'John Giles Personal Training',
+    role: 'Owner/operator',
+    dates: '2000',
+    responsibilities: [
+      'Mobile personal-training business operations',
+      'Client acquisition, scheduling, and retention',
+      'Service planning and customer relations',
+    ],
+  },
+  {
+    name: 'The Sudsy Hussie LLP',
+    role: 'Co-owner/operator',
+    dates: '2021',
+    responsibilities: [
+      'E-commerce operations and online sales',
+      'Product branding, packaging, and marketing',
+      'Manufacturing infrastructure and workflow setup',
+      'Inventory, order-fulfillment, and shipping management',
     ],
   },
 ]
@@ -342,64 +397,6 @@ export const skillGroups: SkillGroup[] = [
   {
     category: 'Additional Expertise',
     subsections: [
-      {
-        title: 'Entrepreneurship & Business Ownership',
-        wide: true,
-        businesses: [
-          {
-            name: 'CodeDiggs LLC',
-            role: 'Founder',
-            dates: '2026–present',
-            skills: [
-              'Business formation and administration',
-              'Software product strategy and planning',
-              'Brand, website, and online-presence management',
-            ],
-          },
-          {
-            name: 'Auto Diagnostic Services LLC',
-            role: 'Owner/operator',
-            dates: '2011–2012',
-            skills: [
-              'Mobile automotive-service business operations',
-              'Customer intake, estimates, scheduling, and invoicing',
-              'Client relationships and workflow management',
-            ],
-          },
-          {
-            name: 'Dezots Club Car Cafe',
-            role: 'Co-owner/operator',
-            dates: '2002',
-            skills: [
-              'Daily deli and food-service business operations',
-              'Staffing and workflow management',
-              'Menu planning and design',
-              'Purchasing, vendor coordination, and inventory control',
-            ],
-          },
-          {
-            name: 'John Giles Personal Training',
-            role: 'Owner/operator',
-            dates: '2000',
-            skills: [
-              'Mobile personal-training business operations',
-              'Client acquisition, scheduling, and retention',
-              'Service planning and customer relations',
-            ],
-          },
-          {
-            name: 'The Sudsy Hussie LLP',
-            role: 'Co-owner/operator',
-            dates: '2021',
-            skills: [
-              'E-commerce operations and online sales',
-              'Product branding, packaging, and marketing',
-              'Manufacturing infrastructure and workflow setup',
-              'Inventory, order-fulfillment, and shipping management',
-            ],
-          },
-        ],
-      },
       {
         title: 'Knowledge & Analytical',
         skills: [
