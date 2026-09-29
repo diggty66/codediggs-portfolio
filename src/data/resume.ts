@@ -121,8 +121,7 @@ export const professionalExperience: ExperienceEntry[] = [
   },
 ]
 
-// Sourced from the supplied Work History document; listed newest to oldest.
-// The separately recorded 2006–2009 family-caregiving interval is not employment.
+// Individual positions from the user's supplied Work History document, newest to oldest.
 export const automotiveCareerHistory: CareerHistoryEntry[] = [
   {
     id: 'princeton-audi-2017',
