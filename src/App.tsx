@@ -873,7 +873,12 @@ export default function App() {
                   key={group.category}
                   id={'skill-' + toAnchorId(group.category)}
                   className={`scroll-mt-24 rounded-xl border border-slate-700 bg-slate-950/60 p-6 ${
-                    ['Additional Expertise', 'Automotive', 'IT Support & Systems'].includes(
+                    [
+                      'Programming & Software Development',
+                      'Additional Expertise',
+                      'Automotive',
+                      'IT Support & Systems',
+                    ].includes(
                       group.category,
                     )
                       ? 'sm:col-span-2 lg:col-span-3'
