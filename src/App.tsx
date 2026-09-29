@@ -437,9 +437,18 @@ export default function App() {
         <section id="about" className="mx-auto max-w-4xl scroll-mt-24 px-6 py-20">
           <h2 className="mb-6 text-3xl font-semibold text-cyan-400">About Me</h2>
           <p className="text-lg leading-relaxed text-slate-300">
-            I’m a multidisciplinary engineer with experience spanning automotive diagnostics,
-            full-stack web development, and AI-driven systems design. My approach combines
-            real-world problem solving with structured, modular software design.
+            I’m a multidisciplinary technologist, educator, and entrepreneur with experience
+            across software engineering, automotive diagnostics, IT and network support,
+            low-voltage electrical systems, and technical design. My background combines
+            hands-on repair and systems troubleshooting with software development, automation,
+            business operations, and classroom/lab instruction.
+          </p>
+          <p className="mt-5 text-lg leading-relaxed text-slate-300">
+            I approach problems by understanding how the pieces interact, identifying root
+            causes, and turning complex ideas into practical, maintainable solutions. That same
+            curiosity informs my independent research and work with emerging AI technologies,
+            connecting mechanical, electrical, and digital disciplines rather than treating them
+            as separate fields.
           </p>
         </section>
 
