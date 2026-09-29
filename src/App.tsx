@@ -729,16 +729,41 @@ export default function App() {
                   }`}
                 >
                   <h3 className="text-lg font-semibold text-cyan-300">{group.category}</h3>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {group.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="rounded-full border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-300"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
+                  {group.skills && (
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {group.skills.map((skill) => (
+                        <span
+                          key={skill}
+                          className="rounded-full border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-300"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {group.subsections && (
+                    <div className="mt-5 grid gap-5 lg:grid-cols-2">
+                      {group.subsections.map((subsection) => (
+                        <section
+                          key={subsection.title}
+                          className="rounded-lg border border-slate-800 bg-slate-900/70 p-5"
+                        >
+                          <h4 className="font-semibold text-slate-100">{subsection.title}</h4>
+                          <div className="mt-4 flex flex-wrap gap-2">
+                            {subsection.skills.map((skill) => (
+                              <span
+                                key={skill}
+                                className="rounded-full border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-300"
+                              >
+                                {skill}
+                              </span>
+                            ))}
+                          </div>
+                        </section>
+                      ))}
+                    </div>
+                  )}
                 </article>
               ))}
             </div>
