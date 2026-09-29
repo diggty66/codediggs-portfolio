@@ -12,6 +12,7 @@ export type SkillGroup = {
   subsections?: Array<{
     title: string
     skills: string[]
+    wide?: boolean
   }>
 }
 
@@ -336,7 +337,8 @@ export const skillGroups: SkillGroup[] = [
     category: 'Additional Expertise',
     subsections: [
       {
-        title: 'Knowledge & Analytical',
+        title: 'Entrepreneurship & Business Ownership',
+        wide: true,
         skills: [
           'Five business ventures spanning ownership, co-ownership, and operations',
           'CodeDiggs LLC — founder (2026–present)',
@@ -346,6 +348,11 @@ export const skillGroups: SkillGroup[] = [
           'The Sudsy Hussie LLP — co-owner/operator (2021)',
           'E-commerce website design and online sales',
           'Product branding, packaging, and marketing',
+        ],
+      },
+      {
+        title: 'Knowledge & Analytical',
+        skills: [
           'Customer relations and client communication',
           'Estimating, scheduling, and workflow management',
           'Oceanography and marine science fundamentals',

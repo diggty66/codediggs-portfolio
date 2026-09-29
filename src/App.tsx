@@ -747,7 +747,9 @@ export default function App() {
                       {group.subsections.map((subsection) => (
                         <section
                           key={subsection.title}
-                          className="rounded-lg border border-slate-800 bg-slate-900/70 p-5"
+                          className={`rounded-lg border border-slate-800 bg-slate-900/70 p-5 ${
+                            subsection.wide ? 'lg:col-span-2' : ''
+                          }`}
                         >
                           <h4 className="font-semibold text-slate-100">{subsection.title}</h4>
                           <div className="mt-4 flex flex-wrap gap-2">
