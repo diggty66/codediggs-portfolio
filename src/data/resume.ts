@@ -8,7 +8,11 @@ export type ExperienceEntry = {
 
 export type SkillGroup = {
   category: string
-  skills: string[]
+  skills?: string[]
+  subsections?: Array<{
+    title: string
+    skills: string[]
+  }>
 }
 
 export type EducationEntry = {
@@ -330,24 +334,34 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     category: 'Additional Expertise',
-    skills: [
-      'Small-business ownership and operations',
-      'Customer relations and client communication',
-      'Estimating, scheduling, and workflow management',
-      'Construction, maintenance, and hands-on problem-solving',
-      'Tool and equipment operation',
-      'Food-service operations',
-      'Personal training, coaching, and motivation',
-      'Oceanography and marine science fundamentals',
-      'Geometry, trigonometry, and calculus',
-      'Physics and mechanical principles',
-      'Economics and analytical reasoning',
-      'Psychology and human behavior fundamentals',
-      'Research writing and composition',
-      'History and global studies',
-      'First aid and CPR fundamentals',
-      'Workplace safety and compliance',
-      'Team leadership and mentoring',
+    subsections: [
+      {
+        title: 'Knowledge & Analytical',
+        skills: [
+          'Customer relations and client communication',
+          'Estimating, scheduling, and workflow management',
+          'Oceanography and marine science fundamentals',
+          'Geometry, trigonometry, and calculus',
+          'Physics and mechanical principles',
+          'Economics and analytical reasoning',
+          'Psychology and human behavior fundamentals',
+          'Research writing and composition',
+          'History and global studies',
+          'Team leadership and mentoring',
+        ],
+      },
+      {
+        title: 'Practical & Hands-On',
+        skills: [
+          'Small-business ownership and operations',
+          'Construction, maintenance, and hands-on problem-solving',
+          'Tool and equipment operation',
+          'Food-service operations',
+          'Personal training, coaching, and motivation',
+          'First aid and CPR fundamentals',
+          'Workplace safety and compliance',
+        ],
+      },
     ],
   },
 ]
