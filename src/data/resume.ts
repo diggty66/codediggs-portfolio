@@ -444,7 +444,10 @@ export const certifications: CertificationEntry[] = [
     issuer:
       'American Aerobic Association International / International Sports Medicine Association',
     completed: 'October 2017 – October 2019',
-    details: ['Previously certified; credential expired in October 2019'],
+    details: ['Previously certified; credential expired October 1, 2019'],
+    documentImage: '/credentials/personal-fitness-trainer-redacted.webp',
+    documentAlt:
+      'AAAI/ISMA Personal Fitness Trainer certificate issued October 1, 2017 and expired October 1, 2019; membership ID redacted',
   },
   {
     credential: 'BMW Body Electronics IV',
