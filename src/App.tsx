@@ -571,13 +571,32 @@ export default function App() {
               Automotive Career History
             </h3>
             <p className="mx-auto mb-9 max-w-2xl text-center text-slate-400">
-              Automotive technician, service, parts, and shop-operations positions from 2004–2019.
-              Select an employer to view responsibilities.
+              Automotive technician, service, parts, and shop-operations positions from 2001–2019.
+              Select an employer to view available responsibilities.
             </p>
 
             <div className="ml-3 space-y-4 border-l-2 border-slate-700 pl-6">
               {automotiveCareerHistory.map((entry) => (
-                <details
+                entry.responsibilities.length === 0 ? (
+                  <article
+                    key={entry.id}
+                    id={'career-' + entry.id}
+                    className="relative scroll-mt-24 rounded-xl border border-slate-700 bg-slate-900 p-5 shadow-lg shadow-slate-950/30"
+                  >
+                    <span aria-hidden="true" className="absolute -left-[2rem] top-7 h-3 w-3 rounded-full border-2 border-cyan-400 bg-slate-950" />
+                    <div className="flex flex-wrap items-start justify-between gap-3">
+                      <div>
+                        <h4 className="text-lg font-semibold text-cyan-300">{entry.company}</h4>
+                        <p className="mt-1 font-medium text-slate-200">{entry.role}</p>
+                        {entry.location && (
+                          <p className="mt-1 text-sm text-slate-400">{entry.location}</p>
+                        )}
+                      </div>
+                      <span className="shrink-0 text-sm text-cyan-400">{entry.dates}</span>
+                    </div>
+                  </article>
+                ) : (
+                  <details
                   key={entry.id}
                   id={'career-' + entry.id}
                   className="group relative scroll-mt-24 rounded-xl border border-slate-700 bg-slate-900 shadow-lg shadow-slate-950/30 open:border-cyan-400/60"
@@ -605,7 +624,8 @@ export default function App() {
                       </li>
                     ))}
                   </ul>
-                </details>
+                  </details>
+                )
               ))}
             </div>
           </div>
