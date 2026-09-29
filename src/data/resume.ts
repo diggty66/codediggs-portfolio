@@ -118,7 +118,14 @@ export const education: EducationEntry[] = [
     institution: 'Rowan University',
     location: 'Glassboro, NJ',
     completed: 'January 2023',
-    details: ['Magna Cum Laude', 'GPA: 3.89', 'Minor in Computer Science'],
+    details: [
+      'Magna Cum Laude',
+      'GPA: 3.83',
+      'Dean’s List — Fall 2021 and Spring 2022',
+      'President’s List — Fall 2022',
+      '4.0 final semester',
+      'Minor in Computer Science',
+    ],
     documentImage: '/credentials/rowan-ba-computing-informatics-2022.jpg',
     documentAlt:
       'Rowan University Bachelor of Arts diploma in Computing and Informatics, Magna Cum Laude',
@@ -249,6 +256,22 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
+    category: 'Computer Science Foundations',
+    skills: [
+      'Object-oriented programming',
+      'Data structures and algorithms',
+      'Database systems',
+      'SQL',
+      'Computer networks and data communications',
+      'Information security',
+      'Human-computer interaction',
+      'Web development',
+      'Computer organization',
+      'Programming language concepts',
+      'Scientific programming',
+    ],
+  },
+  {
     category: 'Languages',
     skills: ['JavaScript', 'TypeScript', 'Python', 'Java', 'C/C++', 'HTML/CSS', 'LaTeX'],
   },
@@ -262,7 +285,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     category: 'Databases',
-    skills: ['PostgreSQL', 'MySQL', 'SQLite'],
+    skills: ['SQL', 'PostgreSQL', 'MySQL', 'SQLite'],
   },
   {
     category: 'Tools',
