@@ -29,6 +29,11 @@ export type CertificationEntry = {
   documentImage?: string
   documentAlt?: string
   documentSummary?: string[]
+  documents?: Array<{
+    label: string
+    image: string
+    alt: string
+  }>
 }
 
 export type MilitaryServiceEntry = {
@@ -147,31 +152,28 @@ export const certifications: CertificationEntry[] = [
     ],
   },
   {
-    credential: 'L1 Advanced Engine Performance Specialist — Examination Passed',
+    credential: 'ASE Certifications and Advanced Credentials',
     issuer: 'National Institute for Automotive Service Excellence (ASE)',
-    completed: 'April 2026',
+    completed: 'Updated 2026',
     details: [
-      'Passed the L1 advanced diagnostic examination covering powertrain, computerized controls, ignition, fuel and air induction, emissions, and failure analysis',
+      'G1 — Auto Maintenance and Light Repair',
+      'A5 — Brakes',
+      'A6 — Electrical/Electronic Systems',
+      'A7 — Heating & Air Conditioning',
+      'A8 — Engine Performance; recertification examination passed January 28, 2026',
+      'L1 — Advanced Engine Performance Specialist; examination passed April 15, 2026',
     ],
-    documentSummary: [
-      'Issuer: National Institute for Automotive Service Excellence (ASE)',
-      'Test date: April 15, 2026',
-      'Result: Passed',
-      'Original score report retained privately because it contains verification identifiers and a QR code.',
-    ],
-  },
-  {
-    credential: 'A8 Engine Performance Recertification — Examination Passed',
-    issuer: 'National Institute for Automotive Service Excellence (ASE)',
-    completed: 'January 2026',
-    details: [
-      'Passed the A8R examination covering diagnosis and repair of ignition, fuel, air-induction, exhaust, emissions, and computerized engine-control systems',
-    ],
-    documentSummary: [
-      'Issuer: National Institute for Automotive Service Excellence (ASE)',
-      'Test date: January 28, 2026',
-      'Result: Passed',
-      'Original score report retained privately because it contains verification identifiers and a QR code.',
+    documents: [
+      {
+        label: 'View A8 recertification report',
+        image: '/credentials/ase-a8-redacted.png',
+        alt: 'Privacy-redacted ASE A8 Engine Performance recertification passing report',
+      },
+      {
+        label: 'View L1 examination report',
+        image: '/credentials/ase-l1-redacted.png',
+        alt: 'Privacy-redacted ASE L1 Advanced Engine Performance Specialist passing report',
+      },
     ],
   },
   {
