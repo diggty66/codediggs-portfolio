@@ -112,9 +112,9 @@ const selectedProjects: GitHubProject[] = [
   {
     name: 'GetMowed2',
     description:
-      'A Flask web application with articles, user profiles, dashboards, and database-backed features.',
+      'A Flask web application with articles, user profiles, dashboards, and Flask-SQLAlchemy-backed features.',
     html_url: `${githubProfile}/GetMowed2`,
-    technologies: ['Flask', 'SQLAlchemy'],
+    technologies: ['Flask', 'Flask-SQLAlchemy'],
   },
   {
     name: 'AiPersonalityGenerator',
@@ -453,6 +453,26 @@ export default function App() {
                 </div>
               </a>
             ))}
+          </div>
+          <div className="mt-10 rounded-xl border border-slate-800 bg-slate-950/60 p-6">
+            <h4 className="text-lg font-semibold text-cyan-300">Earlier Software Projects</h4>
+            <p className="mt-2 text-sm text-slate-400">
+              Historical work documented in an earlier résumé; these are not presented as current live deployments.
+            </p>
+            <div className="mt-5 space-y-4 text-slate-300">
+              <div>
+                <p className="font-semibold text-slate-200">Get Mowed / Gitermowed.com — December 2020</p>
+                <p className="mt-1 leading-relaxed text-slate-400">
+                  Designed and developed a Flask web application using Flask-SQLAlchemy and SQLite.
+                </p>
+              </div>
+              <div className="border-t border-slate-800 pt-4">
+                <p className="font-semibold text-slate-200">Task List — September 2020</p>
+                <p className="mt-1 leading-relaxed text-slate-400">
+                  Built a simple Flask and Python CRUD application, previously hosted on Heroku.
+                </p>
+              </div>
+            </div>
           </div>
           <div className="mt-10 text-center">
             <a
