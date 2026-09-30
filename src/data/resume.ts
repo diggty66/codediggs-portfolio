@@ -48,6 +48,7 @@ export type CertificationEntry = {
   details: string[]
   documentImage?: string
   documentAlt?: string
+  documentDownload?: string
   documentSummary?: string[]
   documents?: Array<{
     label: string
@@ -377,13 +378,17 @@ export const education: EducationEntry[] = [
 
 export const certifications: CertificationEntry[] = [
   {
-    credential: '120-Hour Premier Online TEFL / TESOL Course',
+    credential: '120-Hour Premier TEFL / TESOL Course',
     issuer: 'The TEFL Org',
-    completed: 'September 2026',
+    completed: 'September 30, 2026',
     details: [
-      'Internationally recognized TEFL / TESOL certification',
-      'Grammar, teaching methodology, classroom observation, large-class instruction, and remote learning',
+      'Successfully completed and passed the 120-hour Premier TEFL course',
+      '50-hour TEFL, 30-hour Grammar & Language Awareness, 20-hour Video Observation, 10-hour Teaching Online, and 10-hour Teaching Large Classes',
     ],
+    documentImage: '/credentials/tefl-org-120-hour-certificate-preview.webp',
+    documentAlt:
+      'The TEFL Org certificate confirming successful completion of the 120-hour Premier TEFL course on September 30, 2026',
+    documentDownload: '/credentials/tefl-org-120-hour-certificate.pdf',
   },
   {
     credential: 'Master Gardener Program',
