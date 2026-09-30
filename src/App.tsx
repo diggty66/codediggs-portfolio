@@ -803,7 +803,7 @@ export default function App() {
                     </ul>
 
                     {certification.documents && (
-                      <div className="relative z-20 mt-auto flex flex-col gap-3 pt-6 sm:flex-row">
+                      <div className="relative z-20 mt-auto flex flex-col gap-3 pt-6 sm:flex-row sm:flex-wrap">
                         {certification.documents.map((document) => (
                           <button
                             key={document.image}
