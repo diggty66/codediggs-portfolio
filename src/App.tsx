@@ -26,6 +26,7 @@ type CredentialDocument = {
   title: string
   details?: string[]
   downloadHref?: string
+  downloadLabel?: string
 }
 
 type GitHubProject = {
@@ -766,6 +767,10 @@ export default function App() {
                               : undefined,
                             title: certification.credential,
                             details: certification.documentSummary,
+                            downloadHref: certification.documentDownload,
+                            downloadLabel: certification.documentDownload
+                              ? 'Download certificate PDF'
+                              : undefined,
                           })
                         }
                       />
@@ -852,6 +857,7 @@ export default function App() {
                         alt: service.documentAlt,
                         title: 'Proof of Honorable Service',
                         downloadHref: service.documentDownload,
+                        downloadLabel: 'Download redacted PDF',
                       })
                     }
                   />
@@ -1004,7 +1010,7 @@ export default function App() {
                     download
                     className="relative z-20 mt-3 block rounded-lg border border-cyan-400 px-4 py-2 text-center text-sm font-semibold text-cyan-300 transition hover:bg-cyan-400 hover:text-slate-950"
                   >
-                    Download redacted PDF
+                    {selectedCredential.downloadLabel || 'Download PDF'}
                   </a>
                 )}
               </>
