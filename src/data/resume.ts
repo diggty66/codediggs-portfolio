@@ -399,18 +399,23 @@ export const certifications: CertificationEntry[] = [
     details: ['Completed Master Gardener training program'],
   },
   {
-    credential: 'ASE Certifications and Advanced Credentials',
+    credential: 'ASE Certifications & Current Designations',
     issuer: 'National Institute for Automotive Service Excellence (ASE)',
-    completed: 'Updated 2026',
+    completed: 'Status verified September 30, 2026',
     details: [
-      'G1 — Auto Maintenance and Light Repair',
-      'A5 — Brakes',
-      'A6 — Electrical/Electronic Systems',
-      'A7 — Heating & Air Conditioning',
-      'A8 — Engine Performance; recertification examination passed January 28, 2026',
-      'L1 — Advanced Engine Performance Specialist; examination passed April 15, 2026',
+      'Current ASE designations — Automobile Technician; Maintenance and Light Repair Technician; Advanced Level Specialist',
+      'A6R — Electrical/Electronic Systems Recert — Current through June 30, 2031',
+      'A8R — Engine Performance Recert — Current through June 30, 2031; recertification examination passed January 28, 2026',
+      'G1 — Auto Maintenance and Light Repair — Current through June 30, 2031',
+      'L1 — Automobile Advanced Engine Performance — Current through June 30, 2031; examination passed April 15, 2026',
+      'Historical expired certifications — A5R Brakes, A7R Heating & Air Conditioning, and P2 Automobile Parts; expired June 30, 2016',
     ],
     documents: [
+      {
+        label: 'View current ASE status',
+        image: '/credentials/ase-current-status-2026.webp',
+        alt: 'Privacy-cropped ASE certification status dated September 30, 2026 showing current designations and certification expiration dates',
+      },
       {
         label: 'View A8 recertification report',
         image: '/credentials/ase-a8-redacted.png',
