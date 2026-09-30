@@ -612,9 +612,15 @@ export default function App() {
                         {entry.location && (
                           <span className="mt-1 block text-sm text-slate-400">{entry.location}</span>
                         )}
+                        {entry.summary && (
+                          <span className="mt-2 block max-w-2xl text-sm leading-relaxed text-slate-300">
+                            {entry.summary}
+                          </span>
+                        )}
                       </span>
                       <span className="flex shrink-0 items-center gap-3 text-sm text-cyan-400">
-                        {entry.dates}
+                        <span className="hidden sm:inline">View responsibilities</span>
+                        <span>{entry.dates}</span>
                         <span aria-hidden="true" className="inline-block transition-transform group-open:rotate-180">⌄</span>
                       </span>
                     </span>

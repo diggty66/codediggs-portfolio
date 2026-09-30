@@ -12,6 +12,7 @@ export type CareerHistoryEntry = {
   role: string
   location?: string
   dates: string
+  summary?: string
   responsibilities: string[]
 }
 
@@ -275,6 +276,7 @@ export const automotiveCareerHistory: CareerHistoryEntry[] = [
     role: 'Lube Technician',
     location: 'Red Bank, NJ',
     dates: '2001',
+    summary: 'Routine oil/lube service, fluid and tire checks, and basic preventive maintenance.',
     responsibilities: [
       'Performed routine oil and filter changes and vehicle lubrication services.',
       'Checked fluid levels and tire pressure as part of basic maintenance.',
