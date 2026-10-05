@@ -99,16 +99,16 @@ const publications: Publication[] = [
   },
   {
     title:
-      'Unified Quantum Consciousness Postulation (UQCP): A Field-Access Model of Consciousness, Microtubular Modulation, and Artificial Quantum Cognition',
+      'Unified Quantum Consciousness Postulation (UQCP) v8 — Driven Microtubular Near-Field Transduction Revision: A Field- and Frequency-Modulated Nanoscale Transport Hypothesis with Conditional Consciousness Extensions',
     author: 'John Giles',
-    issued: 'September 2026',
-    version: '1.0',
+    issued: 'October 2026',
+    version: '8.0',
     resourceType: 'Publication',
     description:
-      'A falsifiable framework proposing consciousness as field access rather than local generation, with microtubules as candidate interface components and defined criteria for artificial quantum cognition.',
-    doi: '10.5281/zenodo.22738479',
-    url: 'https://zenodo.org/records/22738479',
-    tags: ['Consciousness', 'Quantum Biology', 'Microtubules', 'Artificial Intelligence'],
+      'A revised theoretical postulation and experimental proposal centered on a Driven Microtubular Near-Field Transduction Array, narrowing the physical model to chromophore-mediated transport through the tubulin lattice and treating electrical, mechanical/acoustic, and magnetic perturbations as testable modulation axes while keeping broader consciousness claims conditional.',
+    doi: '10.5281/zenodo.23146512',
+    url: 'https://zenodo.org/records/23146512',
+    tags: ['UQCP', 'Microtubules', 'Near-Field Optics', 'Anisotropic Transport', 'Nanophotonics', 'Consciousness'],
   },
 ]
 
