@@ -1,0 +1,64 @@
+name: Temporary UQCP v8 metadata update
+
+on:
+  push:
+    branches: [content/update-uqcp-v8-zenodo]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: content/update-uqcp-v8-zenodo
+
+      - name: Update original UQCP publication card to v8
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('src/App.tsx')
+          text = path.read_text()
+          old = """  {
+            title:
+              'Unified Quantum Consciousness Postulation (UQCP): A Field-Access Model of Consciousness, Microtubular Modulation, and Artificial Quantum Cognition',
+            author: 'John Giles',
+            issued: 'September 2026',
+            version: '1.0',
+            resourceType: 'Publication',
+            description:
+              'A falsifiable framework proposing consciousness as field access rather than local generation, with microtubules as candidate interface components and defined criteria for artificial quantum cognition.',
+            doi: '10.5281/zenodo.22738479',
+            url: 'https://zenodo.org/records/22738479',
+            tags: ['Consciousness', 'Quantum Biology', 'Microtubules', 'Artificial Intelligence'],
+          },"""
+          new = """  {
+            title:
+              'Unified Quantum Consciousness Postulation (UQCP) v8 — Driven Microtubular Near-Field Transduction Revision: A Field- and Frequency-Modulated Nanoscale Transport Hypothesis with Conditional Consciousness Extensions',
+            author: 'John Giles',
+            issued: 'October 2026',
+            version: '8.0',
+            resourceType: 'Publication',
+            description:
+              'A revised theoretical postulation and experimental proposal centered on a Driven Microtubular Near-Field Transduction Array, narrowing the physical model to chromophore-mediated transport through the tubulin lattice and treating electrical, mechanical/acoustic, and magnetic perturbations as testable modulation axes while keeping broader consciousness claims conditional.',
+            doi: '10.5281/zenodo.23146512',
+            url: 'https://zenodo.org/records/23146512',
+            tags: ['UQCP', 'Microtubules', 'Near-Field Optics', 'Anisotropic Transport', 'Nanophotonics', 'Consciousness'],
+          },"""
+          count = text.count(old)
+          if count != 1:
+              raise SystemExit(f'Expected exactly one old UQCP card, found {count}')
+          path.write_text(text.replace(old, new))
+          PY
+
+      - name: Commit publication update
+        run: |
+          git config user.name "CodeDiggs"
+          git config user.email "CodeDiggs@users.noreply.github.com"
+          git add src/App.tsx
+          git commit -m "Update original UQCP publication to Zenodo v8"
+          git push origin HEAD:content/update-uqcp-v8-zenodo
