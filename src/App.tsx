@@ -73,6 +73,32 @@ const featuredProjects: FeaturedProject[] = [
 const publications: Publication[] = [
   {
     title:
+      'Unified Quantum Consciousness Postulation: Conditional Physical-Mechanism Extension — Microtubule Excitation Transport as a Candidate Modulatory Substrate',
+    author: 'John Giles',
+    issued: 'October 2026',
+    version: '1.3',
+    resourceType: 'Publication',
+    description:
+      'A speculative theoretical extension that makes microtubule excitation transport a conditional candidate local substrate within UQCP, separating physical transport, biological relevance, and non-local field claims into distinct evidentiary stages with explicit falsification gates.',
+    doi: '10.5281/zenodo.23147513',
+    url: 'https://zenodo.org/records/23147513',
+    tags: ['UQCP', 'Microtubules', 'Transport-State Modulation', 'Consciousness', 'Falsifiability'],
+  },
+  {
+    title:
+      'Axial Excitation-Energy Transport and Inter-Tube Hopping in Microtubules: A Falsifiable Experimental Framework for Molecular Transport, Crosstalk, ELF Modulation, and Array Feasibility',
+    author: 'John Giles',
+    issued: 'October 2026',
+    version: '2.0',
+    resourceType: 'Publication',
+    description:
+      'A theoretical framework and experimental program for testing axial excitation-energy transport, inter-tube hopping and crosstalk, fabrication preservation, and driven ELF modulation in microtubules, with explicit engineering thresholds and stop/falsification criteria.',
+    doi: '10.5281/zenodo.23147287',
+    url: 'https://zenodo.org/records/23147287',
+    tags: ['Microtubules', 'Excitation Migration', 'Axial Transport', 'Inter-Tube Hopping', 'ELF Modulation'],
+  },
+  {
+    title:
       'Unified Quantum Consciousness Postulation (UQCP): A Field-Access Model of Consciousness, Microtubular Modulation, and Artificial Quantum Cognition',
     author: 'John Giles',
     issued: 'September 2026',
