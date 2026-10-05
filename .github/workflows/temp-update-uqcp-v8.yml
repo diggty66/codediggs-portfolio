@@ -23,36 +23,36 @@ jobs:
 
           path = Path('src/App.tsx')
           text = path.read_text()
-          old = """  {
-            title:
-              'Unified Quantum Consciousness Postulation (UQCP): A Field-Access Model of Consciousness, Microtubular Modulation, and Artificial Quantum Cognition',
-            author: 'John Giles',
-            issued: 'September 2026',
-            version: '1.0',
-            resourceType: 'Publication',
-            description:
-              'A falsifiable framework proposing consciousness as field access rather than local generation, with microtubules as candidate interface components and defined criteria for artificial quantum cognition.',
-            doi: '10.5281/zenodo.22738479',
-            url: 'https://zenodo.org/records/22738479',
-            tags: ['Consciousness', 'Quantum Biology', 'Microtubules', 'Artificial Intelligence'],
-          },"""
-          new = """  {
-            title:
-              'Unified Quantum Consciousness Postulation (UQCP) v8 — Driven Microtubular Near-Field Transduction Revision: A Field- and Frequency-Modulated Nanoscale Transport Hypothesis with Conditional Consciousness Extensions',
-            author: 'John Giles',
-            issued: 'October 2026',
-            version: '8.0',
-            resourceType: 'Publication',
-            description:
-              'A revised theoretical postulation and experimental proposal centered on a Driven Microtubular Near-Field Transduction Array, narrowing the physical model to chromophore-mediated transport through the tubulin lattice and treating electrical, mechanical/acoustic, and magnetic perturbations as testable modulation axes while keeping broader consciousness claims conditional.',
-            doi: '10.5281/zenodo.23146512',
-            url: 'https://zenodo.org/records/23146512',
-            tags: ['UQCP', 'Microtubules', 'Near-Field Optics', 'Anisotropic Transport', 'Nanophotonics', 'Consciousness'],
-          },"""
-          count = text.count(old)
-          if count != 1:
-              raise SystemExit(f'Expected exactly one old UQCP card, found {count}')
-          path.write_text(text.replace(old, new))
+          marker = "doi: '10.5281/zenodo.22738479'"
+          pos = text.find(marker)
+          if pos < 0:
+              raise SystemExit('Original UQCP publication DOI was not found')
+          start = text.rfind('  {', 0, pos)
+          end = text.find('  },', pos)
+          if start < 0 or end < 0:
+              raise SystemExit('Could not locate the original UQCP publication object boundaries')
+          end += len('  },')
+          new = (
+              "  {\n"
+              "    title:\n"
+              "      'Unified Quantum Consciousness Postulation (UQCP) v8 — Driven Microtubular Near-Field Transduction Revision: A Field- and Frequency-Modulated Nanoscale Transport Hypothesis with Conditional Consciousness Extensions',\n"
+              "    author: 'John Giles',\n"
+              "    issued: 'October 2026',\n"
+              "    version: '8.0',\n"
+              "    resourceType: 'Publication',\n"
+              "    description:\n"
+              "      'A revised theoretical postulation and experimental proposal centered on a Driven Microtubular Near-Field Transduction Array, narrowing the physical model to chromophore-mediated transport through the tubulin lattice and treating electrical, mechanical/acoustic, and magnetic perturbations as testable modulation axes while keeping broader consciousness claims conditional.',\n"
+              "    doi: '10.5281/zenodo.23146512',\n"
+              "    url: 'https://zenodo.org/records/23146512',\n"
+              "    tags: ['UQCP', 'Microtubules', 'Near-Field Optics', 'Anisotropic Transport', 'Nanophotonics', 'Consciousness'],\n"
+              "  },"
+          )
+          updated = text[:start] + new + text[end:]
+          if updated.count("10.5281/zenodo.23146512") != 1:
+              raise SystemExit('New UQCP DOI validation failed')
+          if "10.5281/zenodo.22738479" in updated:
+              raise SystemExit('Old UQCP DOI remained after replacement')
+          path.write_text(updated)
           PY
 
       - name: Commit publication update
