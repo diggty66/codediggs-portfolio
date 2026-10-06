@@ -102,7 +102,7 @@ const publications: Publication[] = [
       'Unified Quantum Consciousness Postulation (UQCP) v8 — Driven Microtubular Near-Field Transduction Revision: A Field- and Frequency-Modulated Nanoscale Transport Hypothesis with Conditional Consciousness Extensions',
     author: 'John Giles',
     issued: 'October 2026',
-    version: '8.0',
+    version: 'v1.1',
     resourceType: 'Publication',
     description:
       'A revised theoretical postulation and experimental proposal centered on a Driven Microtubular Near-Field Transduction Array, narrowing the physical model to chromophore-mediated transport through the tubulin lattice and treating electrical, mechanical/acoustic, and magnetic perturbations as testable modulation axes while keeping broader consciousness claims conditional.',
