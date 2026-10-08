@@ -6,12 +6,21 @@ import {
   translateText,
   type Language,
 } from './i18n'
+import {
+  buildGoogleTranslateUrl,
+  getGoogleTranslatedTarget,
+  isGoogleTranslatedPage,
+  isNativeLanguage,
+  normalizeSupportedLanguage,
+} from './translateLanguages'
 
 type AttributeName = 'aria-label' | 'alt' | 'title'
 
 const textOriginals = new WeakMap<Text, string>()
 const attributeOriginals = new WeakMap<Element, Partial<Record<AttributeName, string>>>()
 const translatedAttributes: AttributeName[] = ['aria-label', 'alt', 'title']
+const EXTERNAL_LANGUAGE_KEY = 'codediggs-external-language'
+const NATIVE_LANGUAGE_KEY = 'codediggs-language'
 
 const localizedValue = (language: Language, original: string) =>
   language === 'vi' ? translateText(language, original) : original
@@ -100,10 +109,72 @@ const updatePageMetadata = (language: Language) => {
   }
 }
 
+const readStored = (key: string) => {
+  try {
+    return window.localStorage.getItem(key)
+  } catch {
+    return null
+  }
+}
+
+const removeStored = (key: string) => {
+  try {
+    window.localStorage.removeItem(key)
+  } catch {
+    // The selector still works for the current navigation when storage is unavailable.
+  }
+}
+
+const writeStored = (key: string, value: string) => {
+  try {
+    window.localStorage.setItem(key, value)
+  } catch {
+    // The selector still works for the current navigation when storage is unavailable.
+  }
+}
+
+const getPreferredSupportedLanguage = (): string => {
+  if (typeof window === 'undefined') return 'en'
+
+  const query = normalizeSupportedLanguage(new URLSearchParams(window.location.search).get('lang'))
+  if (query) return query
+
+  const external = normalizeSupportedLanguage(readStored(EXTERNAL_LANGUAGE_KEY))
+  if (external) return external
+
+  const native = normalizeSupportedLanguage(readStored(NATIVE_LANGUAGE_KEY))
+  if (native && isNativeLanguage(native)) return native
+
+  const browserLanguages = navigator.languages?.length ? navigator.languages : [navigator.language]
+  for (const browserLanguage of browserLanguages) {
+    const supported = normalizeSupportedLanguage(browserLanguage)
+    if (supported) return supported
+  }
+
+  return 'en'
+}
+
+const originalSiteUrl = (language: Language) => {
+  const url = new URL('https://codediggs.com/')
+  url.searchParams.set('lang', language)
+  if (typeof window !== 'undefined' && window.location.hash) url.hash = window.location.hash
+  return url.toString()
+}
+
 export default function LanguageController() {
   const [language, setLanguage] = useState<Language>(detectInitialLanguage)
+  const [preferredLanguage] = useState(getPreferredSupportedLanguage)
 
   useEffect(() => {
+    if (!isGoogleTranslatedPage() && !isNativeLanguage(preferredLanguage)) {
+      writeStored(EXTERNAL_LANGUAGE_KEY, preferredLanguage)
+      removeStored(NATIVE_LANGUAGE_KEY)
+      window.location.replace(buildGoogleTranslateUrl(preferredLanguage))
+      return
+    }
+
+    if (isNativeLanguage(preferredLanguage)) removeStored(EXTERNAL_LANGUAGE_KEY)
+
     persistLanguage(language)
     updatePageMetadata(language)
 
@@ -138,16 +209,35 @@ export default function LanguageController() {
       window.cancelAnimationFrame(frame)
       observer.disconnect()
     }
-  }, [language])
+  }, [language, preferredLanguage])
 
-  const chooseLanguage = (next: Language) => {
-    setLanguage(next)
-    persistLanguage(next)
+  const chooseLanguage = (next: string) => {
+    const normalized = normalizeSupportedLanguage(next)
+    if (!normalized) return
 
-    const url = new URL(window.location.href)
-    url.searchParams.set('lang', next)
-    window.history.replaceState({}, '', url)
+    if (isNativeLanguage(normalized)) {
+      removeStored(EXTERNAL_LANGUAGE_KEY)
+
+      if (isGoogleTranslatedPage()) {
+        window.location.assign(originalSiteUrl(normalized))
+        return
+      }
+
+      setLanguage(normalized)
+      persistLanguage(normalized)
+
+      const url = new URL(window.location.href)
+      url.searchParams.set('lang', normalized)
+      window.history.replaceState({}, '', url)
+      return
+    }
+
+    writeStored(EXTERNAL_LANGUAGE_KEY, normalized)
+    removeStored(NATIVE_LANGUAGE_KEY)
+    window.location.assign(buildGoogleTranslateUrl(normalized))
   }
 
-  return <LanguageMenu language={language} onChoose={chooseLanguage} />
+  const activeLanguage = getGoogleTranslatedTarget() ?? language
+
+  return <LanguageMenu language={activeLanguage} onChoose={chooseLanguage} />
 }
