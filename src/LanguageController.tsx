@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import LanguageMenu from './LanguageMenu'
 import {
   detectInitialLanguage,
   persistLanguage,
@@ -148,38 +149,5 @@ export default function LanguageController() {
     window.history.replaceState({}, '', url)
   }
 
-  return (
-    <div
-      className="fixed bottom-4 right-4 z-[90] flex items-center gap-1 rounded-xl border border-slate-700 bg-slate-900/95 p-1 shadow-2xl backdrop-blur"
-      role="group"
-      aria-label={language === 'vi' ? 'Ngôn ngữ trang web' : 'Site language'}
-    >
-      <button
-        type="button"
-        onClick={() => chooseLanguage('en')}
-        aria-pressed={language === 'en'}
-        title="English"
-        className={`rounded-lg px-3 py-2 text-xs font-bold transition ${
-          language === 'en'
-            ? 'bg-cyan-400 text-slate-950'
-            : 'text-slate-300 hover:bg-slate-800 hover:text-cyan-300'
-        }`}
-      >
-        EN
-      </button>
-      <button
-        type="button"
-        onClick={() => chooseLanguage('vi')}
-        aria-pressed={language === 'vi'}
-        title="Tiếng Việt"
-        className={`rounded-lg px-3 py-2 text-xs font-bold transition ${
-          language === 'vi'
-            ? 'bg-cyan-400 text-slate-950'
-            : 'text-slate-300 hover:bg-slate-800 hover:text-cyan-300'
-        }`}
-      >
-        VI
-      </button>
-    </div>
-  )
+  return <LanguageMenu language={language} onChoose={chooseLanguage} />
 }
