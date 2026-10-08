@@ -1,19 +1,16 @@
-import { useEffect, useRef, useState } from 'react'
-import type { Language } from './i18n'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { supportedLanguages } from './translateLanguages'
 
 type LanguageMenuProps = {
-  language: Language
-  onChoose: (language: Language) => void
+  language: string
+  onChoose: (language: string) => void
 }
-
-const options: Array<{ value: Language; label: string }> = [
-  { value: 'en', label: 'English' },
-  { value: 'vi', label: 'Tiếng Việt' },
-]
 
 export default function LanguageMenu({ language, onChoose }: LanguageMenuProps) {
   const [open, setOpen] = useState(false)
+  const [search, setSearch] = useState('')
   const containerRef = useRef<HTMLDivElement>(null)
+  const searchRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (!open) return
@@ -28,6 +25,7 @@ export default function LanguageMenu({ language, onChoose }: LanguageMenuProps) 
 
     document.addEventListener('mousedown', closeOnOutsideClick)
     window.addEventListener('keydown', closeOnEscape)
+    window.requestAnimationFrame(() => searchRef.current?.focus())
 
     return () => {
       document.removeEventListener('mousedown', closeOnOutsideClick)
@@ -35,10 +33,23 @@ export default function LanguageMenu({ language, onChoose }: LanguageMenuProps) 
     }
   }, [open])
 
-  const chooseLanguage = (next: Language) => {
+  const filteredLanguages = useMemo(() => {
+    const query = search.trim().toLowerCase()
+    if (!query) return supportedLanguages
+
+    return supportedLanguages.filter(
+      (option) =>
+        option.label.toLowerCase().includes(query) || option.code.toLowerCase().includes(query),
+    )
+  }, [search])
+
+  const chooseLanguage = (next: string) => {
     onChoose(next)
     setOpen(false)
+    setSearch('')
   }
+
+  const isVietnamese = language === 'vi'
 
   return (
     <div
@@ -50,11 +61,11 @@ export default function LanguageMenu({ language, onChoose }: LanguageMenuProps) 
         onClick={() => setOpen((current) => !current)}
         aria-haspopup="menu"
         aria-expanded={open}
-        aria-label={language === 'vi' ? 'Chọn ngôn ngữ' : 'Select language'}
+        aria-label={isVietnamese ? 'Chọn ngôn ngữ' : 'Select language'}
         className="inline-flex h-11 items-center gap-2 rounded-lg border border-slate-700 bg-slate-900/95 px-3 text-sm font-medium text-slate-200 shadow-md backdrop-blur transition hover:border-cyan-400 hover:text-cyan-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-400"
       >
         <span aria-hidden="true" className="text-base">🌐</span>
-        <span className="hidden sm:inline">{language === 'vi' ? 'Ngôn ngữ' : 'Language'}</span>
+        <span className="hidden sm:inline">{isVietnamese ? 'Ngôn ngữ' : 'Language'}</span>
         <span
           aria-hidden="true"
           className={`text-xs transition-transform ${open ? 'rotate-180' : ''}`}
@@ -66,30 +77,62 @@ export default function LanguageMenu({ language, onChoose }: LanguageMenuProps) 
       {open && (
         <div
           role="menu"
-          aria-label={language === 'vi' ? 'Chọn ngôn ngữ' : 'Select language'}
-          className="absolute right-0 mt-2 w-44 overflow-hidden rounded-xl border border-slate-700 bg-slate-900 p-1.5 shadow-2xl"
+          aria-label={isVietnamese ? 'Chọn ngôn ngữ' : 'Select language'}
+          className="absolute right-0 mt-2 w-72 max-w-[calc(100vw-2rem)] overflow-hidden rounded-xl border border-slate-700 bg-slate-900 shadow-2xl"
         >
-          {options.map((option) => {
-            const selected = option.value === language
+          <div className="border-b border-slate-800 p-2.5">
+            <label htmlFor="language-search" className="sr-only">
+              {isVietnamese ? 'Tìm ngôn ngữ' : 'Search languages'}
+            </label>
+            <input
+              ref={searchRef}
+              id="language-search"
+              type="search"
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+              placeholder={isVietnamese ? 'Tìm ngôn ngữ…' : 'Search languages…'}
+              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 outline-none placeholder:text-slate-500 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
+            />
+          </div>
 
-            return (
-              <button
-                key={option.value}
-                type="button"
-                role="menuitemradio"
-                aria-checked={selected}
-                onClick={() => chooseLanguage(option.value)}
-                className={`flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm transition ${
-                  selected
-                    ? 'bg-cyan-400/10 font-semibold text-cyan-300'
-                    : 'text-slate-200 hover:bg-slate-800 hover:text-cyan-300'
-                }`}
-              >
-                <span>{option.label}</span>
-                {selected && <span aria-hidden="true">✓</span>}
-              </button>
-            )
-          })}
+          <div className="max-h-[60vh] overflow-y-auto overscroll-contain p-1.5">
+            {filteredLanguages.map((option) => {
+              const selected = option.code === language
+
+              return (
+                <button
+                  key={option.code}
+                  type="button"
+                  role="menuitemradio"
+                  aria-checked={selected}
+                  onClick={() => chooseLanguage(option.code)}
+                  className={`flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition ${
+                    selected
+                      ? 'bg-cyan-400/10 font-semibold text-cyan-300'
+                      : 'text-slate-200 hover:bg-slate-800 hover:text-cyan-300'
+                  }`}
+                >
+                  <span>{option.label}</span>
+                  <span className="flex shrink-0 items-center gap-2">
+                    <span className="text-xs font-normal uppercase text-slate-500">{option.code}</span>
+                    {selected && <span aria-hidden="true">✓</span>}
+                  </span>
+                </button>
+              )
+            })}
+
+            {filteredLanguages.length === 0 && (
+              <p className="px-3 py-4 text-sm text-slate-400">
+                {isVietnamese ? 'Không tìm thấy ngôn ngữ.' : 'No languages found.'}
+              </p>
+            )}
+          </div>
+
+          <p className="border-t border-slate-800 px-3 py-2.5 text-xs leading-relaxed text-slate-500">
+            {isVietnamese
+              ? 'Tiếng Anh và tiếng Việt dùng bản dịch tích hợp. Các ngôn ngữ khác được dịch bằng Google Translate.'
+              : 'English and Vietnamese use built-in translations. Other languages are translated with Google Translate.'}
+          </p>
         </div>
       )}
     </div>
