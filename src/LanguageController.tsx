@@ -22,8 +22,8 @@ const translateTextNode = (node: Text, language: Language) => {
   if (previousOriginal === undefined) {
     textOriginals.set(node, current)
   } else {
-    const previousLocalized = localizedValue(language, previousOriginal)
-    if (current !== previousOriginal && current !== previousLocalized) {
+    const previousVietnamese = translateText('vi', previousOriginal)
+    if (current !== previousOriginal && current !== previousVietnamese) {
       textOriginals.set(node, current)
     }
   }
@@ -44,8 +44,8 @@ const translateAttributes = (element: Element, language: Language) => {
     if (previousOriginal === undefined) {
       originals[attribute] = current
     } else {
-      const previousLocalized = localizedValue(language, previousOriginal)
-      if (current !== previousOriginal && current !== previousLocalized) {
+      const previousVietnamese = translateText('vi', previousOriginal)
+      if (current !== previousOriginal && current !== previousVietnamese) {
         originals[attribute] = current
       }
     }
