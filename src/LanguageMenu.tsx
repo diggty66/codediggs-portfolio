@@ -78,9 +78,9 @@ export default function LanguageMenu({ language, onChoose }: LanguageMenuProps) 
         <div
           role="menu"
           aria-label={isVietnamese ? 'Chọn ngôn ngữ' : 'Select language'}
-          className="absolute right-0 mt-2 w-72 max-w-[calc(100vw-2rem)] overflow-hidden rounded-xl border border-slate-700 bg-slate-900 shadow-2xl"
+          className="fixed inset-x-3 top-[4.75rem] flex max-h-[calc(100dvh-5.5rem)] flex-col overflow-hidden rounded-xl border border-slate-700 bg-slate-900 shadow-2xl sm:absolute sm:inset-x-auto sm:left-auto sm:right-0 sm:top-full sm:mt-2 sm:w-80 sm:max-w-[calc(100vw-2rem)] sm:max-h-[calc(100dvh-6rem)]"
         >
-          <div className="border-b border-slate-800 p-2.5">
+          <div className="shrink-0 border-b border-slate-800 p-2">
             <label htmlFor="language-search" className="sr-only">
               {isVietnamese ? 'Tìm ngôn ngữ' : 'Search languages'}
             </label>
@@ -95,7 +95,7 @@ export default function LanguageMenu({ language, onChoose }: LanguageMenuProps) 
             />
           </div>
 
-          <div className="max-h-[60vh] overflow-y-auto overscroll-contain p-1.5">
+          <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-1.5">
             {filteredLanguages.map((option) => {
               const selected = option.code === language
 
@@ -106,17 +106,18 @@ export default function LanguageMenu({ language, onChoose }: LanguageMenuProps) 
                   role="menuitemradio"
                   aria-checked={selected}
                   onClick={() => chooseLanguage(option.code)}
-                  className={`flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition ${
+                  className={`flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-left text-sm transition ${
                     selected
                       ? 'bg-cyan-400/10 font-semibold text-cyan-300'
                       : 'text-slate-200 hover:bg-slate-800 hover:text-cyan-300'
                   }`}
                 >
-                  <span>{option.label}</span>
-                  <span className="flex shrink-0 items-center gap-2">
+                  <span className="min-w-0 truncate">{option.label}</span>
+                  <span className="hidden shrink-0 items-center gap-2 sm:flex">
                     <span className="text-xs font-normal uppercase text-slate-500">{option.code}</span>
                     {selected && <span aria-hidden="true">✓</span>}
                   </span>
+                  {selected && <span aria-hidden="true" className="shrink-0 sm:hidden">✓</span>}
                 </button>
               )
             })}
@@ -128,7 +129,7 @@ export default function LanguageMenu({ language, onChoose }: LanguageMenuProps) 
             )}
           </div>
 
-          <p className="border-t border-slate-800 px-3 py-2.5 text-xs leading-relaxed text-slate-500">
+          <p className="hidden shrink-0 border-t border-slate-800 px-3 py-2 text-xs leading-relaxed text-slate-500 sm:block">
             {isVietnamese
               ? 'Tiếng Anh và tiếng Việt dùng bản dịch tích hợp. Các ngôn ngữ khác được dịch bằng Google Translate.'
               : 'English and Vietnamese use built-in translations. Other languages are translated with Google Translate.'}
